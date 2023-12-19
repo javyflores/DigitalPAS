@@ -41,6 +41,7 @@ body {
       Renderice el elemento "principal" de manera consistente en IE
    */
 
+
 main {
     display: block;
 }

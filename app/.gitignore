@@ -1,17 +1,5 @@
 Proximamente/
 pruebadashboard/
-digitalpas/
 
-# Ignorar archivos y carpetas generados por Laravel
-#digitalpas/vendor/
-#digitalpas/node_modules/
-#digitalpas/public/storage
-#digitalpas/public/hot
-#digitalpas/storage/*.key
-#digitalpas/.idea
-#digitalpas/.env
-#digitalpas/Homestead.json
-#digitalpas/Homestead.yaml
 
-#digitalpas/public/vendor/
 

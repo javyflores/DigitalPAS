@@ -6,40 +6,32 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
+
+
 class LoginController extends Controller
 {
     public function index(){
     	return view('login');
     }
 
+
     public function login(){
 
-	    if (isset($_POST['username']) && isset($_POST['password'])) {
-	        $usuario= $_POST['username'];
+
+    
+	    if (isset($_POST['cedula']) && isset($_POST['password'])) {
+	        $cedula= $_POST['cedula'];
 	        $password= $_POST['password'];
-		    $query = DB::select("SELECT dp.id_afi, a.cod_usr, a.usuario
-								FROM nomina.dat_pers_afi dp
-								JOIN (
-								  SELECT id_afi, cod_usr, usuario, password
-								  FROM usuario.administrador
-								  UNION ALL
-								  SELECT id_afi, cod_usr, usuario, password
-								  FROM usuario.dir_nacional
-								  UNION ALL
-								  SELECT id_afi, cod_usr, usuario, password
-								  FROM usuario.dir_seccional
-								  UNION ALL
-								  SELECT id_afi, cod_usr, usuario, password
-								  FROM usuario.afiliado
-								) a ON dp.id_afi = a.id_afi
-								GROUP BY dp.id_afi, a.cod_usr, a.usuario, a.password
-								HAVING a.usuario = '$usuario' AND a.password = '$password'
-								ORDER BY dp.id_afi");
-		    $result = $query[0];
-		    if ($result) {
+		    $query = DB::select("SELECT id_afi, cod_usr, nombre
+								FROM usuario.usuarios
+								Where cedula= $cedula
+								AND password = '$password'");
+		    
+		    if ($query) {
+		    	$result = $query[0];
 		    	//Laravel Session
 		    	$codigo = $result->cod_usr;
-				$usuario = $result->usuario;
+				$usuario = $result->nombre;
 				//Utilizamos el método put() de Facades\Session para guardar los datos necesarios en la sesión.
 				Session::start();
 				Session::put('codigo', $codigo);
@@ -66,12 +58,14 @@ class LoginController extends Controller
 	                break;
 	                //En el caso de que no se cumpla ninguno de los casos anteriores, se ejecuta el bloque default, aca no ejecuta ninguna accion.
 	                default:
+	                	return redirect('/login')->with('error', 'Usuario no registrado');
 	            }        	
 	    	}
 	        else{
 	            //no existe el usuario
-	            return redirect('/login');
+	            return redirect('/login')->with('error', 'Credenciales inválidas');
 	        }	    	
 	    }
+    
     }
 }

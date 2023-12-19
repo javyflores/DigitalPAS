@@ -1,0 +1,384 @@
+Base de Datos
+create database digitalpas;
+
+Esquemas
+create schema usuario;
+create schema nomina;
+create schema gestion;
+
+Tablas
+CREATE TABLE usuario.usuarios (cod_usr int, fec_reg date, id_afi varchar(12), nombre varchar(40), rol_usr int, sta_usr int, cedula int, password varchar(10));
+CREATE TABLE usuario.rol_usuario (rol_usr int, descrip varchar(20));
+CREATE TABLE usuario.sta_usuario (sta_usr int, status varchar(20));
+CREATE TABLE usuario.usr_afi_sys (id_afi varchar(12), cod_reg serial, cod_sec varchar(2), cedula int, nombre varchar(40));
+CREATE TABLE usuario.admin_sys (id_afi varchar(12), cod_reg serial, cedula int, nombre varchar(40));
+CREATE TABLE usuario.otr_usr_sys (cod_reg serial, id int, cedula int, nombre varchar(40));
+CREATE TABLE usuario.ctrl_acs_sys (reg_acs serial, cod_usr int, acceso date, salida date);
+
+CREATE TYPE nomina.sexo AS ENUM ('fem', 'mas');
+CREATE TABLE nomina.afiliados (edo varchar(2), cod_sec varchar(2), cedula int, id_afi varchar(12), p_nombre varchar(20), s_nombre varchar(20), p_apellido varchar(20), s_apellido varchar(20), fec_nac date, sexo nomina.sexo, est_civ int, hijos boolean, discap int, gra_disc int, niv_aca int, prof_ofc int);
+CREATE TABLE nomina.entidad (edo varchar(2), entidad varchar(20));
+CREATE TABLE nomina.seccional (cod_sec varchar(2), edo varchar(2));
+CREATE TABLE nomina.estado_civil (est_civ int, descrip varchar(20));
+CREATE TABLE nomina.discapacidad (discap int, tipo varchar(20));
+CREATE TABLE nomina.grado_disc (gra_disc int, grado varchar(20));
+CREATE TABLE nomina.nivel_aca (niv_aca int, descrip varchar(20));
+CREATE TABLE nomina.prof_oficio (prof_ofc int, descrip varchar(20));
+CREATE TABLE nomina.dat_lab_afi (id_afi varchar(12), cod_cargo varchar(12), cod_dep varchar(12), fec_ing_min date);
+CREATE TABLE nomina.dependencia (cod_dep varchar(12), nombre varchar(50));
+CREATE TABLE nomina.cargos (cod_cargo varchar(12), cargo varchar(20));
+CREATE TABLE nomina.dat_cont_afi (id_afi varchar(12), telefono varchar(11), correo varchar(20), redes varchar(20), dir_hab varchar(50), foto int);
+CREATE TABLE nomina.datos_hijos_afi (id_afi varchar(12), item int, ced_hij int, nombres varchar(20), apellidos varchar(20), fec_nac date, sexo nomina.sexo, discap int, gra_disc int);
+CREATE TABLE nomina.mov_afiliado (id_afi varchar(12), fec_ing date, cod_egr int, fec_egr date);
+CREATE TABLE nomina.tipo_egreso (cod_egr int, egreso varchar(20));
+
+CREATE TABLE nomina.dir_nacional (id_afi varchar(12), cod_reg serial, cod_cargo varchar(12), cedula int, nombre varchar(40));
+CREATE TABLE nomina.dir_seccional (id_afi varchar(12), cod_reg serial, cod_sec varchar(2), cod_cargo varchar(12), cedula int, nombre varchar(40));
+
+CREATE TABLE gestion.requerimiento (req_reg serial, cod_usr int, fec_req date);
+CREATE TABLE gestion.afiliacion (req_reg int, req varchar(20), edo varchar(2), cod_usr int, cedula int, p_nombre varchar(20), p_apellido varchar(20), fec_crea date, afi_dig bytea, ced_dig bytea);
+CREATE TABLE gestion.sol_tramite (req_reg int, req varchar(20), edo varchar(2), cod_usr int, cedula int, cod_tipo int, cod_prio int, fec_crea date, desc_sol varchar(100), reca_dig bytea, ced_dig bytea);
+CREATE TABLE gestion.sol_asistencia (req_reg int, req varchar(20), edo varchar(2), cod_usr int, ced_afi int, cod_tipo int, cod_prio int, fec_crea date, desc_sol varchar(100), reca_dig bytea, ced_dig bytea);
+CREATE TABLE gestion.tipo_solicitud (cod_tipo int, tipo_sol varchar(20));
+CREATE TABLE gestion.prioridad_solicitud (cod_prio int, prioridad varchar(20));
+CREATE TABLE gestion.visitas (req_reg int, req varchar(20), edo varchar(2), cod_usr_sol int, ced_sol int, p_nombre_sol varchar(20), p_apellido_sol varchar(20), dependencia varchar(12), fec_crea date, desc_sol varchar(100), cod_sec_asig varchar(2), cod_dir_asig int, cod_sta int, result_sol_tra int, result_afi int, acta_cie_dig bytea, fec_cierre date);
+CREATE TABLE gestion.estatus (cod_sta int, status varchar(20));
+CREATE TABLE gestion.req_seguimiento (req_seg varchar(20), cod_sta int, fec_crea date, fec_env date, fec_adm date, fec_rev date, fec_consig date, fec_resl date, fec_resp date);
+CREATE TABLE gestion.relacion_sec (cod_rel_sec int, cod_sec varchar(2), fec_ini date, cod_usr_ini int, req_seg varchar(20), fec_env date, cod_usr_cie int);
+CREATE TABLE gestion.admision_nac (cod_adm_nac int, cod_rel_sec int, req_seg varchar(20), cod_usr_reciv int, fec_adm_nac date);
+CREATE TABLE gestion.revision_nac (cod_rev_nac int, cod_adm_nac int, cod_usr_rev int, fec_rev date);
+CREATE TABLE gestion.relacion_nac (cod_rel_nac int, cod_rev_nac int, fec_ini date, cod_usr_ini int, req_seg varchar(20), fec_consig date, cod_usr_cie int);
+CREATE TABLE gestion.resultas (req_seg varchar(20), cod_resl int, fec_resl date, coment varchar(100));
+CREATE TABLE gestion.tipo_resultas (cod_resl int, tipo_resl varchar(20));
+CREATE TABLE gestion.respuesta (req_seg varchar(20), cod_resp int, fec_resp date, coment varchar(100));
+CREATE TABLE gestion.tipo_respuesta (cod_resp int, canal varchar(20));
+
+Restricciones
+ALTER TABLE nomina.entidad add constraint pk_edo primary key (edo);
+ALTER TABLE nomina.entidad alter entidad set not null;
+
+ALTER TABLE nomina.seccional add constraint pk_sec primary key (cod_sec);
+ALTER TABLE nomina.seccional add constraint fk_edo foreign key (edo)
+references nomina.entidad (edo);
+
+ALTER TABLE nomina.estado_civil add constraint pk_est_civ primary key (est_civ);
+ALTER TABLE nomina.estado_civil alter descrip set not null;
+
+ALTER TABLE nomina.discapacidad add constraint pk_discap primary key (discap);
+ALTER TABLE nomina.discapacidad alter tipo set not null;
+
+ALTER TABLE nomina.grado_disc add constraint pk_gra_disc primary key (gra_disc);
+ALTER TABLE nomina.grado_disc alter grado set not null;
+
+ALTER TABLE nomina.nivel_aca add constraint pk_niv_aca primary key (niv_aca);
+ALTER TABLE nomina.nivel_aca alter descrip set not null;
+
+ALTER TABLE nomina.prof_oficio add constraint pk_prof_ofc primary key (prof_ofc);
+ALTER TABLE nomina.prof_oficio alter descrip set not null;
+
+ALTER TABLE nomina.afiliados add constraint fk_edo foreign key (edo)
+references nomina.entidad (edo);
+ALTER TABLE nomina.afiliados add constraint fk_cod_sec foreign key (cod_sec)
+references nomina.seccional (cod_sec);
+ALTER TABLE nomina.afiliados add constraint uk_cedula unique (cedula);
+ALTER TABLE nomina.afiliados add constraint pk_id primary key (id_afi);
+ALTER TABLE nomina.afiliados alter p_nombre set not null;
+ALTER TABLE nomina.afiliados alter p_apellido set not null;
+ALTER TABLE nomina.afiliados alter fec_nac set not null;
+ALTER TABLE nomina.afiliados alter sexo set not null;
+ALTER TABLE nomina.afiliados add constraint fk_est_civ foreign key (est_civ)
+references nomina.estado_civil (est_civ);
+ALTER TABLE nomina.afiliados alter hijos set not null;
+ALTER TABLE nomina.afiliados add constraint fk_discap foreign key (discap)
+references nomina.discapacidad (discap);
+ALTER TABLE nomina.afiliados add constraint fk_gra_disc foreign key (gra_disc)
+references nomina.grado_disc (gra_disc);
+ALTER TABLE nomina.afiliados add constraint fk_niv_aca foreign key (niv_aca)
+references nomina.nivel_aca (niv_aca);
+ALTER TABLE nomina.afiliados add constraint fk_prof_ofc foreign key (prof_ofc)
+references nomina.prof_oficio (prof_ofc);
+
+ALTER TABLE nomina.cargos add constraint pk_cargo primary key (cod_cargo);
+ALTER TABLE nomina.cargos alter cargo set not null;
+
+ALTER TABLE nomina.dependencia add constraint pk_dep primary key (cod_dep);
+ALTER TABLE nomina.dependencia alter nombre set not null;
+
+ALTER TABLE nomina.dat_lab_afi add constraint fk_id foreign key (id_afi)
+references nomina.afiliados (id_afi);
+ALTER TABLE nomina.dat_lab_afi add constraint fk_cargo foreign key (cod_cargo)
+references nomina.cargos (cod_cargo);
+ALTER TABLE nomina.dat_lab_afi add constraint fk_dep foreign key (cod_dep)
+references nomina.dependencia (cod_dep);
+
+ALTER TABLE nomina.dat_cont_afi add constraint fk_id foreign key (id_afi)
+references nomina.afiliados (id_afi);
+
+ALTER TABLE nomina.tipo_egreso add constraint pk_egr primary key (cod_egr);
+ALTER TABLE nomina.tipo_egreso alter egreso set not null;
+
+ALTER TABLE nomina.mov_afiliado add constraint fk_id foreign key (id_afi)
+references nomina.afiliados (id_afi);
+ALTER TABLE nomina.mov_afiliado add constraint fk_egr foreign key (cod_egr)
+references nomina.tipo_egreso (cod_egr);
+
+ALTER TABLE nomina.dir_nacional add constraint fk_id foreign key (id_afi)
+references nomina.afiliados (id_afi);
+ALTER TABLE nomina.dir_nacional add constraint pk_dir_nac primary key (cod_reg);
+ALTER TABLE nomina.dir_nacional add constraint fk_cargo foreign key (cod_cargo)
+references nomina.cargos (cod_cargo);
+ALTER TABLE nomina.dir_nacional alter cedula set not null;
+ALTER TABLE nomina.dir_nacional alter nombre set not null;
+
+ALTER TABLE nomina.dir_seccional add constraint fk_id foreign key (id_afi)
+references nomina.afiliados (id_afi);
+ALTER TABLE nomina.dir_seccional add constraint pk_dir_sec primary key (cod_reg);
+ALTER TABLE nomina.dir_seccional add constraint fk_cod_sec foreign key (cod_sec)
+references nomina.seccional (cod_sec);
+ALTER TABLE nomina.dir_seccional add constraint fk_cargo foreign key (cod_cargo)
+references nomina.cargos (cod_cargo);
+ALTER TABLE nomina.dir_seccional alter cedula set not null;
+ALTER TABLE nomina.dir_seccional alter nombre set not null;
+
+ALTER TABLE usuario.usr_afi_sys add constraint fk_id foreign key (id_afi)
+references nomina.afiliados (id_afi);
+ALTER TABLE usuario.usr_afi_sys add constraint pk_usr_afi primary key (cod_reg);
+ALTER TABLE usuario.usr_afi_sys add constraint fk_cod_sec foreign key (cod_sec)
+references nomina.seccional (cod_sec);
+ALTER TABLE usuario.usr_afi_sys alter cedula set not null;
+ALTER TABLE usuario.usr_afi_sys alter nombre set not null;
+
+ALTER TABLE usuario.admin_sys add constraint fk_id foreign key (id_afi)
+references nomina.afiliados (id_afi);
+ALTER TABLE usuario.admin_sys add constraint pk_usr_admin primary key (cod_reg);
+ALTER TABLE usuario.admin_sys alter cedula set not null;
+ALTER TABLE usuario.admin_sys alter nombre set not null;
+
+ALTER TABLE usuario.otr_usr_sys add constraint pk_otr_usr primary key (cod_reg);
+ALTER TABLE usuario.otr_usr_sys alter id set not null;
+ALTER TABLE usuario.otr_usr_sys alter cedula set not null;
+ALTER TABLE usuario.otr_usr_sys alter nombre set not null;
+
+ALTER TABLE usuario.rol_usuario add constraint pk_rol_usr primary key (rol_usr);
+ALTER TABLE usuario.rol_usuario alter descrip set not null;
+
+ALTER TABLE usuario.sta_usuario add constraint pk_sta_usr primary key (sta_usr);
+ALTER TABLE usuario.sta_usuario alter status set not null;
+
+ALTER TABLE usuario.usuarios add constraint pk_usr primary key (cod_usr);
+ALTER TABLE usuario.usuarios alter fec_reg set not null;
+ALTER TABLE usuario.usuarios add constraint fk_id foreign key (id_afi)
+references nomina.afiliados (id_afi);
+ALTER TABLE usuario.usuarios alter nombre set not null;
+ALTER TABLE usuario.usuarios add constraint fk_rol_usr foreign key (rol_usr)
+references usuario.rol_usuario (rol_usr);
+ALTER TABLE usuario.usuarios add constraint fk_sta_usr foreign key (sta_usr)
+references usuario.sta_usuario (sta_usr);
+ALTER TABLE usuario.usuarios alter cedula set not null;
+ALTER TABLE usuario.usuarios alter password set not null;
+
+ALTER TABLE usuario.ctrl_acs_sys add constraint pk_reg_acs primary key (reg_acs);
+ALTER TABLE usuario.ctrl_acs_sys add constraint fk_cod_usr foreign key (cod_usr)
+references usuario.usuarios (cod_usr);
+ALTER TABLE usuario.ctrl_acs_sys alter acceso set not null;
+
+ALTER TABLE gestion.requerimiento add constraint pk_req_reg primary key (req_reg);
+ALTER TABLE gestion.requerimiento add constraint fk_cod_usr foreign key (cod_usr)
+references usuario.usuarios (cod_usr);
+ALTER TABLE gestion.requerimiento alter fec_req set not null;
+
+ALTER TABLE gestion.afiliacion add constraint fk_req_reg foreign key (req_reg)
+references gestion.requerimiento (req_reg);
+ALTER TABLE gestion.afiliacion add constraint pk_req primary key (req);
+ALTER TABLE gestion.afiliacion add constraint fk_edo foreign key (edo)
+references nomina.entidad (edo);
+ALTER TABLE gestion.afiliacion add constraint fk_cod_usr foreign key (cod_usr)
+references usuario.usuarios (cod_usr);
+ALTER TABLE gestion.afiliacion alter cedula set not null;
+ALTER TABLE gestion.afiliacion alter p_nombre set not null;
+ALTER TABLE gestion.afiliacion alter p_apellido set not null;
+ALTER TABLE gestion.afiliacion alter fec_crea set not null;
+
+ALTER TABLE gestion.tipo_solicitud add constraint pk_tipo primary key (cod_tipo);
+ALTER TABLE gestion.tipo_solicitud alter tipo_sol set not null;
+
+ALTER TABLE gestion.prioridad_solicitud add constraint pk_prio primary key (cod_prio);
+ALTER TABLE gestion.prioridad_solicitud alter prioridad set not null;
+
+ALTER TABLE gestion.sol_tramite add constraint fk_req_reg foreign key (req_reg)
+references gestion.requerimiento (req_reg);
+ALTER TABLE gestion.sol_tramite add constraint pk_req_sol primary key (req);
+ALTER TABLE gestion.sol_tramite add constraint fk_edo foreign key (edo)
+references nomina.entidad (edo);
+ALTER TABLE gestion.sol_tramite add constraint fk_cod_usr foreign key (cod_usr)
+references usuario.usuarios (cod_usr);
+ALTER TABLE gestion.sol_tramite alter cedula set not null;
+ALTER TABLE gestion.sol_tramite add constraint fk_tipo foreign key (cod_tipo)
+references gestion.tipo_solicitud (cod_tipo);
+ALTER TABLE gestion.sol_tramite add constraint fk_prio foreign key (cod_prio)
+references gestion.prioridad_solicitud (cod_prio);
+ALTER TABLE gestion.sol_tramite alter fec_crea set not null;
+
+ALTER TABLE gestion.sol_asistencia add constraint fk_req_reg foreign key (req_reg)
+references gestion.requerimiento (req_reg);
+ALTER TABLE gestion.sol_asistencia add constraint pk_req_asis primary key (req);
+ALTER TABLE gestion.sol_asistencia add constraint fk_edo foreign key (edo)
+references nomina.entidad (edo);
+ALTER TABLE gestion.sol_asistencia add constraint fk_cod_usr foreign key (cod_usr)
+references usuario.usuarios (cod_usr);
+ALTER TABLE gestion.sol_asistencia alter ced_afi set not null;
+ALTER TABLE gestion.sol_asistencia add constraint fk_tipo foreign key (cod_tipo)
+references gestion.tipo_solicitud (cod_tipo);
+ALTER TABLE gestion.sol_asistencia add constraint fk_prio foreign key (cod_prio)
+references gestion.prioridad_solicitud (cod_prio);
+ALTER TABLE gestion.sol_asistencia alter fec_crea set not null;
+
+ALTER TABLE gestion.estatus add constraint pk_sta primary key (cod_sta);
+ALTER TABLE gestion.estatus alter status set not null;
+
+ALTER TABLE gestion.visitas add constraint fk_req_reg foreign key (req_reg)
+references gestion.requerimiento (req_reg);
+ALTER TABLE gestion.visitas add constraint pk_req_vis primary key (req);
+ALTER TABLE gestion.visitas add constraint fk_edo foreign key (edo)
+references nomina.entidad (edo);
+ALTER TABLE gestion.visitas add constraint fk_dep foreign key (dependencia)
+references nomina.dependencia (cod_dep);
+ALTER TABLE gestion.visitas add constraint fk_cod_usr foreign key (cod_usr_sol)
+references usuario.usuarios (cod_usr);
+ALTER TABLE gestion.visitas alter fec_crea set not null;
+ALTER TABLE gestion.visitas add constraint fk_cod_sec foreign key (cod_sec_asig)
+references nomina.seccional (cod_sec);
+ALTER TABLE gestion.visitas add constraint fk_cod_usr_asig foreign key (cod_dir_asig)
+references nomina.dir_seccional (cod_reg);
+ALTER TABLE gestion.visitas add constraint fk_sta foreign key (cod_sta)
+references gestion.estatus (cod_sta);
+
+ALTER TABLE gestion.req_seguimiento add constraint pk_seg_rec primary key (req_seg);
+ALTER TABLE gestion.req_seguimiento alter fec_crea set not null;
+
+ALTER TABLE gestion.relacion_sec add constraint pk_rela_sec primary key (cod_rel_sec);
+ALTER TABLE gestion.relacion_sec add constraint fk_cod_sec foreign key (cod_sec)
+references nomina.seccional (cod_sec);
+ALTER TABLE gestion.relacion_sec alter fec_ini set not null;
+ALTER TABLE gestion.relacion_sec add constraint fk_cod_usr_ini foreign key (cod_usr_ini)
+references nomina.dir_seccional (cod_reg);
+ALTER TABLE gestion.relacion_sec add constraint fk_req_seg foreign key (req_seg)
+references gestion.req_seguimiento (req_seg);
+
+ALTER TABLE gestion.admision_nac add constraint pk_adm_nac primary key (cod_adm_nac);
+ALTER TABLE gestion.admision_nac add constraint fk_con_nac foreign key (cod_rel_sec)
+references gestion.relacion_sec (cod_rel_sec);
+ALTER TABLE gestion.admision_nac add constraint fk_req_seg foreign key (req_seg)
+references gestion.req_seguimiento (req_seg);
+ALTER TABLE gestion.admision_nac add constraint fk_cod_usr_reciv foreign key (cod_usr_reciv)
+references nomina.dir_nacional (cod_reg);
+ALTER TABLE gestion.admision_nac alter fec_adm_nac set not null;
+
+ALTER TABLE gestion.revision_nac add constraint pk_rev_nac primary key (cod_rev_nac);
+ALTER TABLE gestion.revision_nac add constraint fk_adm_nac foreign key (cod_adm_nac)
+references gestion.admision_nac (cod_adm_nac);
+ALTER TABLE gestion.revision_nac add constraint fk_cod_usr_rev foreign key (cod_usr_rev)
+references nomina.dir_nacional (cod_reg);
+ALTER TABLE gestion.revision_nac alter fec_rev set not null;
+
+
+ALTER TABLE gestion.relacion_nac add constraint pk_rel_nac primary key (cod_rel_nac);
+ALTER TABLE gestion.relacion_nac add constraint fk_rev_nac foreign key (cod_rev_nac)
+references gestion.revision_nac (cod_rev_nac);
+ALTER TABLE gestion.relacion_nac alter fec_ini set not null;
+ALTER TABLE gestion.relacion_nac add constraint fk_cod_usr foreign key (cod_usr_ini)
+references nomina.dir_nacional (cod_reg);
+ALTER TABLE gestion.relacion_nac add constraint fk_req_seg foreign key (req_seg)
+references gestion.req_seguimiento (req_seg);
+
+ALTER TABLE gestion.tipo_resultas add constraint pk_tip_resl primary key (cod_resl);
+ALTER TABLE gestion.tipo_resultas alter tipo_resl set not null;
+
+ALTER TABLE gestion.resultas add constraint fk_resl foreign key (req_seg)
+references gestion.req_seguimiento (req_seg);
+ALTER TABLE gestion.resultas add constraint fk_tip_resl foreign key (cod_resl)
+references gestion.tipo_resultas (cod_resl);
+
+ALTER TABLE gestion.tipo_respuesta add constraint pk_tip_resp primary key (cod_resp);
+ALTER TABLE gestion.tipo_respuesta alter canal set not null;
+
+ALTER TABLE gestion.respuesta add constraint fk_req foreign key (req_seg)
+references gestion.req_seguimiento (req_seg);
+ALTER TABLE gestion.respuesta add constraint fk_resp foreign key (cod_resp)
+references gestion.tipo_respuesta (cod_resp);
+
+
+
+
+Crear la función trigger (para usuarios)
+
+CREATE OR REPLACE FUNCTION usuario.insertar_usuario()
+RETURNS TRIGGER AS $$
+BEGIN
+
+  INSERT INTO usuario.usuarios (cod_usr, fec_reg, id_afi, nombre, rol_usr, sta_usr, cedula, password)
+  VALUES (NEW.cod_reg, current_date, NEW.id_afi, NEW.nombre, 7, 1, NEW.cedula, NEW.cedula);
+  
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+Crear el trigger en las tablas correspondientes para usuarios
+
+CREATE TRIGGER insertar_dir_nacional
+AFTER INSERT ON nomina.dir_nacional
+FOR EACH ROW
+EXECUTE procedure usuario.insertar_usuario();
+
+CREATE TRIGGER insertar_dir_seccional
+AFTER INSERT ON nomina.dir_seccional
+FOR EACH ROW
+EXECUTE procedure usuario.insertar_usuario();
+
+CREATE TRIGGER insertar_usr_afi_sys
+AFTER INSERT ON usuario.usr_afi_sys
+FOR EACH ROW
+EXECUTE procedure usuario.insertar_usuario();
+
+CREATE TRIGGER insertar_admin_sys
+AFTER INSERT ON usuario.admin_sys
+FOR EACH ROW
+EXECUTE procedure usuario.insertar_usuario();
+
+CREATE TRIGGER insertar_otr_usr_sys
+AFTER INSERT ON usuario.otr_usr_sys
+FOR EACH ROW
+EXECUTE procedure usuario.insertar_usuario();
+
+
+
+
+Crear la función trigger (para seguimiento)
+
+CREATE OR REPLACE FUNCTION gestion.seguimiento()
+RETURNS TRIGGER AS $$
+BEGIN
+
+  INSERT INTO gestion.req_seguimiento (req_seg, cod_sta, fec_crea)
+  VALUES (NEW.req, 1, NEW.fec_crea);
+  
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+Crear el trigger en las tablas correspondientes para seguimiento
+
+CREATE TRIGGER insertar_afiliacion
+AFTER INSERT ON gestion.afiliacion
+FOR EACH ROW
+EXECUTE procedure gestion.seguimiento();
+
+CREATE TRIGGER insertar_tramite
+AFTER INSERT ON gestion.sol_tramite
+FOR EACH ROW
+EXECUTE procedure gestion.seguimiento();
+
+CREATE TRIGGER insertar_asistencia
+AFTER INSERT ON gestion.sol_asistencia
+FOR EACH ROW
+EXECUTE procedure gestion.seguimiento();

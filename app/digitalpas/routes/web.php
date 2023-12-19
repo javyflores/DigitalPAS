@@ -23,13 +23,13 @@ Route::post('login', 'App\Http\Controllers\LoginController@login');
 Route::get('admin', 'App\Http\Controllers\AdminController@index');
 
 Route::get('admnomina', 'App\Http\Controllers\AdmnominaController@index');
+Route::post('admnomina', 'App\Http\Controllers\AdmnominaController@consulta');
 
-
-/*Para probar conexion BD
-use Illuminate\Support\Facades\DB;
-
-Route::get('/test-connection', function () {
-    $results = DB::select('select * from nomina.datos_personales');
-    dd($results);
+Route::get('consulta', function () {
+    return view('nomina.consnomina');
 });
-*/
+Route::get('perfil', function () {
+    return view('layouts.plantillaTarjPerfil');
+});
+
+

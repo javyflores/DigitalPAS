@@ -17,6 +17,15 @@ body {
     padding: var(--padding-container);
 }
 
+.container_carrusel {
+    width: 70%;
+    max-width: 70%;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: var(--padding-container);
+}
+
+
 .hero {
     width: 100%;
     height: 100vh;
@@ -524,6 +533,9 @@ body {
         font-size: 2.5rem;
     }
 
+    .hero::before {
+        clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 85%, 0 70%);
+    }
 
     .about__main{
         gap: 2em;
@@ -601,6 +613,10 @@ body {
 
     .hero__paragraph{
         font-size: 1rem;
+    }
+
+    .hero::before {
+        clip-path: polygon(0 0, 100% 0, 100% 60%, 50% 80%, 0 60%);
     }
 
     .subtitle{
