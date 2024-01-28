@@ -22,7 +22,7 @@
 <body>
 
 
-    <h1>Hola parga</h1>
+    <h1>Hola Bienvenido</h1>
 
     <section style="background-color: #eee;">
       <div class="container py-5">

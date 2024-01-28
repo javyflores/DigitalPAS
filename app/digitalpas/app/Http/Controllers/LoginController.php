@@ -48,10 +48,10 @@ class LoginController extends Controller
 	                    return redirect('/admin');
 	                break;
 	                case 2:
-	                    return redirect('/dirnacional');
+	                    return redirect('/dirnac');
 	                break;
 	                case 3:
-	                    return redirect('/dirseccional');
+	                    return redirect('/dirsec');
 	                break;
 	                case 4:
 	                    return redirect('/afiliado');
