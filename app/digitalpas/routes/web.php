@@ -24,6 +24,8 @@ Route::get('dirsec', 'App\Http\Controllers\AdminController@index');
 /* Afiliado */
 Route::get('afiliado', 'App\Http\Controllers\AfiliadoController@index');
 
+Route::get('afilnewreq', 'App\Http\Controllers\AfilnewreqController@index');
+Route::post('afilnewreq', 'App\Http\Controllers\LoginController@reqnuevo');
 
 
 /* Perfil */

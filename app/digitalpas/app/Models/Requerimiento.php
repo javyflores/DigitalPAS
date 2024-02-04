@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Requerimiento extends Model
 {
     use HasFactory;
+    protected $table = 'gestion.requerimiento';
+    protected $primaryKey = 'req_reg';
+    public $timestamps = false;
 }

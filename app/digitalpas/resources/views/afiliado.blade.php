@@ -15,79 +15,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
-    <style>
-        .price{
-            text-align: center;
-        }
-        .price__table{
-            padding-top: 60px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2.5em;
-            justify-content: space-evenly;
-            align-items: center;
-        }
-        .price__element{
-            background-color: #e5e5f7;
-            text-align: center;
-            border-radius: 10px;
-            width: 330px;
-            padding: 40px;
-            --color-plan: #696871;
-            --color-price: #1D293F;
-            --bg-cta: #fff;
-            --color-cta: #5454D4;
-            --color-items: #696871;
-        }
-        .price__element--best{
-            width: 330px;
-            padding: 40px;
-            background-color: #FF7143;
-            --color-plan: rgb(255 255 255 / 75%);
-            --color-price: #fff;
-            --bg-cta: #9F3919;
-            --color-cta: #FFF;
-            --color-items: #fff;
-        }
-        .price__name{
-            color: var(--color-plan);
-            margin-bottom: 15px;
-            font-weight: 300;
-        }
-        .price__price{
-            font-size: 2.5rem;
-            color: var(--color-price);
-        }
-        .price__items{
-            margin-top: 35px;
-            display: grid;
-            gap: 1em;
-            font-weight: 300;
-            font-size: 1.2rem;
-            margin-bottom: 50px;
-            color: var(--color-items);
-        }
-        .price__cta{
-            display: block;
-            padding: 20px 0;
-            border-radius: 10px;
-            text-decoration: none;
-            background-color: var(--bg-cta);
-            font-weight: 600;
-            color: var(--color-cta);
-            box-shadow: 0 0 1px rgba(0, 0, 0, .5);
-        }
-        .price__element{
-            width: 40%;
-        }
-        .price__element--best{
-            width: 40%;
-        }
-        .price__price{
-            font-size: 2rem;
-        }
-    </style>
+    <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -134,17 +62,14 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tramitar:</h6>
-                        <a class="collapse-item" href="">Beneficio</a>
+                        <a class="collapse-item" href="afilnewreq">Beneficio</a>
                         <a class="collapse-item" href="">Visita</a>
                         <a class="collapse-item" href="">Reclamos</a>
                     </div>
                 </div>
             </li>
 
-
-
-
-            <!-- Sidebar Toggler (Sidebar) -->
+        <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
@@ -318,7 +243,7 @@
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <!-- Nav Item - User Information -->
+                        <!-- User Information -->
 
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -355,8 +280,8 @@
                     <div class="row">
 
 
-
-                <!-- Begin Page Content -->
+                <!-- Informacion Central -->
+                
                 <div class="container-fluid">
 
                     <section class="price container">
