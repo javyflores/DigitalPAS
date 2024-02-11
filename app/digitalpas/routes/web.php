@@ -25,7 +25,11 @@ Route::get('dirsec', 'App\Http\Controllers\AdminController@index');
 Route::get('afiliado', 'App\Http\Controllers\AfiliadoController@index');
 
 Route::get('afilnewreq', 'App\Http\Controllers\AfilnewreqController@index');
-Route::post('afilnewreq', 'App\Http\Controllers\LoginController@reqnuevo');
+Route::post('afilnewreq', 'App\Http\Controllers\AfilnewreqController@reqnuevo');
+
+Route::get('solAsistencia', function () {
+    return view('afiliado\solAsistencia');
+});
 
 
 /* Perfil */
@@ -50,4 +54,8 @@ Route::get('consulta', function () {
 Route::get('oficio', function () {
     return view('layouts.plantillaOficio');
 });
+
+
+/* Pruebas */
+Route::get('prueba', 'App\Http\Controllers\PruebaController@index');
 

@@ -22,7 +22,7 @@ class LoginController extends Controller
 	    if (isset($_POST['cedula']) && isset($_POST['password'])) {
 	        $cedula= $_POST['cedula'];
 	        $password= $_POST['password'];
-		    $query = DB::select("SELECT id_afi, cod_usr, nombre
+		    $query = DB::select("SELECT id_afi, cod_usr, cedula, nombre
 								FROM usuario.usuarios
 								Where cedula= $cedula
 								AND password = '$password'");
@@ -31,10 +31,14 @@ class LoginController extends Controller
 		    	$result = $query[0];
 		    	//Laravel Session
 		    	$codigo = $result->cod_usr;
+		    	$id_afi = $result->id_afi;
+		    	$cedula = $result->cedula;
 				$usuario = $result->nombre;
 				//Utilizamos el método put() de Facades\Session para guardar los datos necesarios en la sesión.
 				Session::start();
 				Session::put('codigo', $codigo);
+				Session::put('id_afi', $id_afi);
+				Session::put('cedula', $cedula);
 				Session::put('usuario', $usuario);
 
 		    	//Para validar el rol del usuario.

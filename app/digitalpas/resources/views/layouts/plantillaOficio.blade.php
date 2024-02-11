@@ -90,12 +90,12 @@
   <div class="documento">
     <div class="cintillo">
       <!-- Logo del MPPE y otros órganos adscritos -->
-      <img src="img/CINTILLO.png" alt="Logo MPPE">
+      <img src="{{ asset('img/cintilloOFC.png') }}">
     </div>
 
     <div class="fecha">
       <!-- Fecha -->
-      <p>Fecha: 16 de enero de 2024</p>
+      <p>Fecha: {{ \Carbon\Carbon::now()->locale('es')->format('d \d\e F \d\e Y') }}</p>
     </div>
 
     <div class="numero">

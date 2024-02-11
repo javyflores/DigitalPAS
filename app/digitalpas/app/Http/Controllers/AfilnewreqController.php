@@ -6,43 +6,57 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\Requerimiento;
+use App\Models\Entidad;
+use App\Models\Sol_asistencia;
 
 class AfilnewreqController extends Controller
 {
     public function index(Request $request){
         $codigo = Session::get('codigo');
+        $id_afi = Session::get('id_afi');
+        $cedula = Session::get('cedula');
         $usuario = Session::get('usuario');
 
-        // Obtener el último registro ordenado por req_reg de forma descendente
-        $ultimoRegistro = Requerimiento::orderBy('req_reg', 'desc')->first();
+        $reqregnew = Requerimiento::getNuevoReqReg();
 
-        // Obtener el valor de req_reg del último registro
-        $ultimoReqReg = $ultimoRegistro->req_reg;
+        $edo = substr($id_afi, 0, 2);
+        $estado = Entidad::where('edo', $edo)->value('entidad');
 
-        // Sumar 1 al valor de req_reg para el nuevo registro
-        $nuevoReqReg = $ultimoReqReg + 1;
+        $sec = substr($codigo, 1, 2);
 
-        // Crear un nuevo registro con el req_reg actualizado
-        $nuevoRegistro = new Requerimiento();
-        $nuevoRegistro->cod_usr = $codigo;
-        $nuevoRegistro->fec_req = now(); // Insertar la fecha actual
-        $nuevoRegistro->req_reg = $nuevoReqReg; // Asignar el nuevo valor de req_reg
-        $nuevoRegistro->save();
+        $validatedData = $request->validate(['desc_sol' => 'max:100']);
 
-        // Agregar el nuevo registro a la variable $reqnew
-        $reqnew = $nuevoRegistro;
-
-        return view ('afiliado.afilnewreq', ['codigo' => $codigo, 'usuario' => $usuario,
-            'nuevoReqReg' => $nuevoReqReg
+        return view ('afiliado.afilnewreq', [
+            'codigo' => $codigo,
+            'id_afi' => $id_afi,
+            'cedula' => $cedula,
+            'usuario' => $usuario,
+            'edo' => $edo,
+            'estado' => $estado,
+            'sec' => $sec,
+            'reqregnew' => $reqregnew->req_reg
         ]);
     }
 
+    public function reqnuevo(Request $request){
 
+        $sol_asistencia = new Sol_asistencia();
+        
+        $sol_asistencia->req = $request->input('req');
+        $sol_asistencia->req_reg = $request->input('req_reg');
+        $sol_asistencia->edo = $request->input('edo');
+        $sol_asistencia->cod_usr = $request->input('cod_usr');
+        $sol_asistencia->ced_afi = $request->input('ced_afi');
+        $sol_asistencia->cod_tipo = $request->input('cod_tipo');
+        $sol_asistencia->cod_prio = $request->input('cod_prio');
+        $sol_asistencia->fec_crea = $request->input('fec_crea');
+        $sol_asistencia->desc_sol = $request->input('desc_sol');
+        $sol_asistencia->reca_dig = $request->input('reca_dig');
+        $sol_asistencia->ced_dig = $request->input('ced_dig');
 
-    public function reqnuevo(){
-        if (isset($_POST['req']) && isset($_POST['desc_sol'])) {
+        $sol_asistencia->save();
 
-        };
+        return redirect('/solAsistencia')->with($sol_asistencia['sol_asistencia']);
     }
 
 }
