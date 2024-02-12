@@ -3,11 +3,11 @@
 <?php $__env->startSection('contenido'); ?>
 
 
-<h5>Hola <?php echo e($usuario); ?> que requerimiento deseas gestionar</h5>
+<h5>Hola <?php echo e($usuario); ?> ¿Qué Beneficio Contractual deseas gestionar?</h5>
 
 
 <div>
-	<h6>Requerimiento Nº<?php echo e($nuevoReqReg); ?></h6>
+	<h6>Requerimiento Nº<?php echo e($reqregnew); ?></h6>
 </div>
 
 
@@ -38,35 +38,60 @@
   <div class="form-group">
     <label class="control-label col-sm-2">Cédula:</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="ced_afi" id="ced_afi" value= "<?php echo e($codigo); ?>" readonly>
+      <input type="text" class="form-control" name="ced_afi" id="ced_afi" value= "<?php echo e($cedula); ?>" readonly>
     </div>
   </div>
 
   <div class="form-group">
     <label class="control-label col-sm-2">Estado:</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="edo" id="edo" value= "<?php echo e($codigo); ?>" readonly>
+      <input type="text" class="form-control" name="estado" id="estado" value="<?php echo e($estado); ?>" readonly>
     </div>
   </div>
 
   <div class="form-group">
     <label class="control-label col-sm-2">Descripción:</label>
     <div class="col-sm-10">
-      <textarea name="desc_sol" id="desc_sol" placeholder="Detalla tu Solicitud"rows="2" cols="30"></textarea>
+      <textarea name="desc_sol" id="desc_sol" placeholder="Detalla tu Solicitud" rows="2" cols="30" maxlength="100" oninput="updateCounter()"></textarea>
+      <span id="counter">100</span> caracteres restantes
+      <script>
+        function updateCounter() {
+          var textarea = document.getElementById("desc_sol");
+          var counter = document.getElementById("counter");
+          var remainingChars = 100 - textarea.value.length;
+          counter.textContent = remainingChars;
+        }
+      </script>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+    <select name="cod_prio" id="cod_prio">
+      <option>Prioridad de la Solicitud </option>
+      <option value="1">1.-Normal</option>
+      <option value="2">2.-Alta</option>
+    </select>
     </div>
   </div>
 
   <div class="form-group">
     <label class="control-label col-sm-2">Recaudos Digitalizados:</label>
     <div class="col-sm-10">
-      <input type="file" name="reca_dig" id="reca_dig">
+      <input type="file" name="reca_dig" id="reca_dig" accept=".pdf" size="10000000">
+    </div>
+    <div class="col-sm-10">
+      <span id="valid" colour=red>Solo archivos PDF con un máximo de 10MB</span>
     </div>
   </div>
 
   <div class="form-group">
     <label class="control-label col-sm-2">Cédula Digitalizada:</label>
     <div class="col-sm-10">
-      <input type="file" name="ced_dig" id="ced_dig">
+      <input type="file" name="ced_dig" id="ced_dig" accept=".pdf" size="10000000">
+    </div>
+    <div class="col-sm-10">
+      <span id="valid" colour=red>Solo archivos PDF con un máximo de 10MB</span>
     </div>
   </div>
 
@@ -75,33 +100,32 @@
     // Obtener referencias a los campos
     var cod_tipo = document.getElementById('cod_tipo');
     var req = document.getElementById('req');
-
     // Escuchar el evento de cambio en tipo
     cod_tipo.addEventListener('input', function() {
-        // Obtener el valor de tipo
-        var valorCod_tipo = cod_tipo.value;
-
-        // Agregar el prefijo al valor de campo1 y asignarlo a campo2
-        req.value = valorCod_tipo + <?php echo e($nuevoReqReg); ?>;
+    // Obtener el valor de tipo
+    var valorCod_tipo = cod_tipo.value;
+    // Agregar el prefijo As al valor de tipo y reqreg, para agregar valor a req
+    req.value = "As<?php echo e($sec); ?>-" + valorCod_tipo + '-<?php echo e($reqregnew); ?>';
     });
   </script>
-  <input type="hidden" name="campo_oculto" id="" value="valor_oculto">
-  <input type="hidden" name="campo_oculto" id="" value="valor_oculto">
 
+  <input type="hidden" name="req_reg" id="req_reg" value="<?php echo e($reqregnew); ?>">
 
+  <input type="hidden" name="edo" id="edo" value="<?php echo e($edo); ?>">
+  
+  <input type="hidden" name="cod_usr" id="cod_usr" value="<?php echo e($codigo); ?>">
+  
+  <input type="hidden" name="fec_crea" id="fec_crea" value= "<?php echo e(now()); ?>">
 
-
-  <div class="form-group">
+  <div class="form-group" align="center">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Submit</button>
+      <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generar Solicitud
+      </button>
     </div>
   </div>
-
-
 </form>
 
 </div>
-
 
 
 <?php $__env->stopSection(); ?>

@@ -27,8 +27,8 @@ Route::get('afiliado', 'App\Http\Controllers\AfiliadoController@index');
 Route::get('afilnewreq', 'App\Http\Controllers\AfilnewreqController@index');
 Route::post('afilnewreq', 'App\Http\Controllers\AfilnewreqController@reqnuevo');
 
-Route::get('solAsistencia', function () {
-    return view('afiliado\solAsistencia');
+Route::get('confSolAsist', function () {
+    return view('afiliado\confSolAsist');
 });
 
 

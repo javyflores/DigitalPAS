@@ -95,7 +95,7 @@
     </div>
   </div>
 
-  <input type="hidden" name="req" id="req" readonly>
+  <input type="hidden" name="req" id="req">
   <script>
     // Obtener referencias a los campos
     var cod_tipo = document.getElementById('cod_tipo');

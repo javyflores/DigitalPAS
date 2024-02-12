@@ -56,7 +56,7 @@ class AfilnewreqController extends Controller
 
         $sol_asistencia->save();
 
-        return redirect('/solAsistencia')->with($sol_asistencia['sol_asistencia']);
+        return redirect('/confSolAsist')->with('sol_asistencia', $sol_asistencia);
     }
 
 }

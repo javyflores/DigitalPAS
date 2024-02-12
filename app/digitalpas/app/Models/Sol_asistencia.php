@@ -20,10 +20,25 @@ class Sol_asistencia extends Model
 	}
 
 
-	/*
 	public function crearSolicitud($datos)
 	{
-	    return $this->create($datos);
+        $sol_asistencia = new Sol_asistencia();
+        
+        $sol_asistencia->req = $request->input('req');
+        $sol_asistencia->req_reg = $request->input('req_reg');
+        $sol_asistencia->edo = $request->input('edo');
+        $sol_asistencia->cod_usr = $request->input('cod_usr');
+        $sol_asistencia->ced_afi = $request->input('ced_afi');
+        $sol_asistencia->cod_tipo = $request->input('cod_tipo');
+        $sol_asistencia->cod_prio = $request->input('cod_prio');
+        $sol_asistencia->fec_crea = $request->input('fec_crea');
+        $sol_asistencia->desc_sol = $request->input('desc_sol');
+        $sol_asistencia->reca_dig = $request->input('reca_dig');
+        $sol_asistencia->ced_dig = $request->input('ced_dig');
+
+        $sol_asistencia->save();
+
+        return redirect('/solAsistencia')->with($sol_asistencia['sol_asistencia']);
 	}
 
 	public function editarSolicitud($id, $datos)
@@ -45,7 +60,7 @@ class Sol_asistencia extends Model
 	    }
 	    return false;
 	}
-	*/
+
 
 
 
