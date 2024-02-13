@@ -95,7 +95,7 @@
 
     <div class="fecha">
       <!-- Fecha -->
-      <p>Fecha: {{ \Carbon\Carbon::now()->locale('es')->format('d \d\e F \d\e Y') }}</p>
+      <p>Fecha: {{ \Carbon\Carbon::now()->locale('')->format('d \d\e F \d\e Y') }}</p>
     </div>
 
     <div class="numero">
@@ -111,6 +111,11 @@
       <p>Su Despacho.</p>
     </div>
 
+
+    <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generar Solicitud</button>
+
+
+    
     <div class="contenido">
 
       <!-- Cuerpo del oficio -->

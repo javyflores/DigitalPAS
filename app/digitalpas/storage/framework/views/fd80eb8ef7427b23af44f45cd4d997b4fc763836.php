@@ -16,6 +16,7 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <link href="<?php echo e(asset('css/sb-admin-2.css')); ?>" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -64,11 +65,9 @@
                         <h6 class="collapse-header">Tramitar:</h6>
                         <a class="collapse-item" href="afilnewreq">Beneficio</a>
                         <a class="collapse-item" href="">Visita</a>
-                        <a class="collapse-item" href="">Reclamos</a>
                     </div>
                 </div>
             </li>
-
 
             <hr class="sidebar-divider">
 
@@ -76,7 +75,6 @@
             <div class="sidebar-heading">
                 Complementos
             </div>
-
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">

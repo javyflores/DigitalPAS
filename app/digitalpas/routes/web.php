@@ -27,10 +27,13 @@ Route::get('afiliado', 'App\Http\Controllers\AfiliadoController@index');
 Route::get('afilnewreq', 'App\Http\Controllers\AfilnewreqController@index');
 Route::post('afilnewreq', 'App\Http\Controllers\AfilnewreqController@reqnuevo');
 
-Route::get('confSolAsist', function () {
-    return view('afiliado\confSolAsist');
-});
+Route::get('confSolAsist', 'App\Http\Controllers\ConfSolAsistController@prueba');
 
+Route::get('editSolAsist', 'App\Http\Controllers\EditSolAsistController@editar');
+Route::put('editSolAsist', 'App\Http\Controllers\EditSolAsistController@update');
+
+Route::get('/users/{id}/edit', 'UserController@edit')->name('users.edit');
+Route::put('/users/{id}', 'UserController@update')->name('users.update');
 
 /* Perfil */
 Route::get('perfil', function () {

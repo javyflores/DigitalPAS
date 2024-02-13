@@ -40,10 +40,17 @@ class AfilnewreqController extends Controller
 
     public function reqnuevo(Request $request){
 
-        $sol_asistencia = new Sol_asistencia();
+        $reqr = $request->input('req');
+        $estado = $request->input('estado');
+
+        Session::put('reqr', $reqr);
+        Session::put('estado', $estado);
+
         
-        $sol_asistencia->req = $request->input('req');
+        $sol_asistencia = new Sol_asistencia();
+
         $sol_asistencia->req_reg = $request->input('req_reg');
+        $sol_asistencia->req = $request->input('req');
         $sol_asistencia->edo = $request->input('edo');
         $sol_asistencia->cod_usr = $request->input('cod_usr');
         $sol_asistencia->ced_afi = $request->input('ced_afi');
@@ -57,6 +64,10 @@ class AfilnewreqController extends Controller
         $sol_asistencia->save();
 
         return redirect('/confSolAsist')->with('sol_asistencia', $sol_asistencia);
+
     }
 
 }
+
+
+
