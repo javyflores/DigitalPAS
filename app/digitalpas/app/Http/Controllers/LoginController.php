@@ -16,16 +16,31 @@ class LoginController extends Controller
 
 
     public function login(){
+		
+		$password = $_POST['password'];
+		$validacion = preg_match('/[^0-9]/', $password);
+		$cedula= $_POST['cedula'];
+		$password= $_POST['password'];
+	//	preg_match('/[^a-zA-Z0-9]/', $password) // validacion para numeros y letras 
+    //	preg_match('/[^0-9]/', $password) // validacion para que sean solo numeros
 
+	  //  if (isset($_POST['cedula']) && isset($_POST['password'])) {
+		if (isset($_POST['cedula']) && isset($_POST['password']) && ($validacion==0)) {
 
-    
-	    if (isset($_POST['cedula']) && isset($_POST['password'])) {
+			/* //este es el codigo anterior
 	        $cedula= $_POST['cedula'];
 	        $password= $_POST['password'];
 		    $query = DB::select("SELECT id_afi, cod_usr, cedula, nombre
 								FROM usuario.usuarios
 								Where cedula= $cedula
 								AND password = '$password'");
+			*/
+
+			$query = DB::table('usuario.usuarios') //este es el codigo actual
+			->select('id_afi', 'cod_usr', 'cedula', 'nombre')
+			->where('cedula', $cedula)
+			->where('password', $password)
+			->get();
 		    
 		    if ($query) {
 		    	$result = $query[0];
