@@ -344,6 +344,7 @@
 
 
                 <!-- Begin Page Content -->
+                @if($rol == 2)
                 <div class="container-fluid">
 
 
@@ -431,6 +432,15 @@
 
 
                 </div>
+              
+                    <!-- Aquí colocas el contenido que se mostrará si los datos están disponibles -->
+                @else
+                    <div class="container-fluid">
+                        <!--img src="" alt="Error 404" style="width: 200px;"-->
+                        <h2>Error 404</h2>
+                        <p>Lo sentimos, la información que estás buscando no se encuentra disponible para este rol de usuario.</p>
+                    </div>
+                @endif
                 <!-- /.container-fluid -->
 
 

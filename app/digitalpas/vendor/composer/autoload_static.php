@@ -532,6 +532,7 @@ class ComposerStaticInitd6d13fa81357482d1579d00fad522964
         'App\\Models\\Entidad' => __DIR__ . '/../..' . '/app/Models/Entidad.php',
         'App\\Models\\Nomina' => __DIR__ . '/../..' . '/app/Models/Nomina.php',
         'App\\Models\\Requerimiento' => __DIR__ . '/../..' . '/app/Models/Requerimiento.php',
+        'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
         'App\\Models\\Sol_asistencia' => __DIR__ . '/../..' . '/app/Models/Sol_asistencia.php',
         'App\\Models\\Usuarios' => __DIR__ . '/../..' . '/app/Models/Usuarios.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',

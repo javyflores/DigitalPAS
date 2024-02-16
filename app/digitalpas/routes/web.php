@@ -7,6 +7,7 @@ Route::get('login', 'App\Http\Controllers\LoginController@index');
 Route::post('login', 'App\Http\Controllers\LoginController@login');
 
 
+
 /* Administrador */
 Route::get('admin', 'App\Http\Controllers\AdminController@index');
 Route::get('admnomina', 'App\Http\Controllers\AdmnominaController@index');
