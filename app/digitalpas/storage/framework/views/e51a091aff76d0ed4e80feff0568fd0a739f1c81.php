@@ -16,6 +16,7 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <link href="<?php echo e(asset('css/sb-admin-2.css')); ?>" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -62,11 +63,24 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tramitar:</h6>
-                        <a class="collapse-item" href="">Beneficio</a>
+                        <a class="collapse-item" href="afilnewreq">Beneficio</a>
                         <a class="collapse-item" href="">Visita</a>
-                        <a class="collapse-item" href="">Reclamos</a>
                     </div>
                 </div>
+            </li>
+
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Complementos
+            </div>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Seguimiento de Solicitudes</span></a>
             </li>
 
         <!-- Sidebar Toggler (Sidebar) -->
@@ -248,10 +262,10 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo e($usuario); ?></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo e(session('usuario')); ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
-                                <h5><?php echo e($codigo); ?></h5>
+                                <h5><?php echo e(session('codigo')); ?></h5>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

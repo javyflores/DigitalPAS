@@ -38,7 +38,7 @@ class Sol_asistencia extends Model
 
         $sol_asistencia->save();
 
-        return redirect('/solAsistencia')->with($sol_asistencia['sol_asistencia']);
+        return redirect('/confSolAsist')->with($sol_asistencia['sol_asistencia']);
 	}
 
 	public function editarSolicitud($id, $datos)
