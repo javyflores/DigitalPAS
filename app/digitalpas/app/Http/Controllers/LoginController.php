@@ -58,4 +58,22 @@ class LoginController extends Controller
             return redirect('/login')->with('error', 'Credenciales inválidas');
         }
     }
+
+
+    //la salida del perfil
+    public function logout(Request $request)
+    {
+        // Aquí puedes agregar cualquier lógica de limpieza o registro que necesites antes de salir
+        // Por ejemplo, podrías registrar la actividad de salida del usuario en algún lugar.
+
+        // Luego, limpiamos la sesión manualmente
+        $request->session()->invalidate();
+
+        // Finalmente, redirigimos al usuario a la página de inicio o a donde quieras después de salir.
+        return redirect()->route('login');
+    }
+
+
+
+
 }

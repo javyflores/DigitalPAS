@@ -32,7 +32,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Admin</div>
+                <div class="sidebar-brand-text mx-3">Dirsec</div>
             </a>
 
             <!-- Divider -->
@@ -344,6 +344,7 @@
 
 
                 <!-- Begin Page Content -->
+                @if($rol == 2 || $rol == 4 || $rol == 3)
                 <div class="container-fluid">
 
 
@@ -431,6 +432,13 @@
 
 
                 </div>
+                @else
+                    <div class="container-fluid">
+                        <!--img src="" alt="Error 404" style="width: 200px;"-->
+                        <h2>Error 404</h2>
+                        <p>Lo sentimos, la información que estás buscando no se encuentra disponible para este rol de usuario.</p>
+                    </div>
+                @endif
                 <!-- /.container-fluid -->
 
 
@@ -472,7 +480,7 @@
                 <div class="modal-body">Seleccione "SALIR" si está listo para finalizar su sesión actual.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="">SALIR</a>
+                    <a class="btn btn-primary" href="{{ route('logout') }}">SALIR</a>
                 </div>
             </div>
         </div>

@@ -366,7 +366,7 @@
                 <div class="modal-body">Seleccione "SALIR" si está listo para finalizar su sesión actual.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="">SALIR</a>
+                    <a class="btn btn-primary" href="{{ route('logout') }}">SALIR</a>
                 </div>
             </div>
         </div>

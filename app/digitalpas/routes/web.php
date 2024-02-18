@@ -3,8 +3,11 @@
 use Illuminate\Support\Facades\Route;
 
 /* Login */
-Route::get('login', 'App\Http\Controllers\LoginController@index');
+Route::get('login', 'App\Http\Controllers\LoginController@index')->name('login');
 Route::post('login', 'App\Http\Controllers\LoginController@login');
+/* salida */
+Route::get('/logout', 'App\Http\Controllers\LoginController@logout')->name('logout');
+
 
 
 
@@ -19,7 +22,7 @@ Route::get('dirnac', 'App\Http\Controllers\AdminController@index');
 
 
 /* Directiva Secional*/
-Route::get('dirsec', 'App\Http\Controllers\AdminController@index');
+Route::get('dirsec', 'App\Http\Controllers\DirsecController@index');
 
 
 /* Afiliado */
