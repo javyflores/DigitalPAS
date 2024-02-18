@@ -42,7 +42,7 @@ class LoginController extends Controller
                     return redirect('/admin');
                     break;
                 case '3':
-                    return redirect('/dirnac');
+                    return redirect('/nacionales');
                     break;
                 case '4':
                     return redirect('/dirsec');

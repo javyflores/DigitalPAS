@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ChartController;
 
 /* Login */
 Route::get('login', 'App\Http\Controllers\LoginController@index')->name('login');
@@ -18,11 +19,14 @@ Route::post('admnomina', 'App\Http\Controllers\AdmnominaController@consulta');
 
 
 /* Directiva Nacional */
-Route::get('dirnac', 'App\Http\Controllers\AdminController@index');
+Route::get('nacionales', 'App\Http\Controllers\NacionalesController@index');
 
 
 /* Directiva Secional*/
 Route::get('dirsec', 'App\Http\Controllers\DirsecController@index');
+
+/*grafico para que los secionales tenga la estadistica de los afiliados*/
+Route::get('/grafico-datos', [ChartController::class, 'getChartData'])->name('grafico.datos');
 
 
 /* Afiliado */
@@ -66,3 +70,5 @@ Route::get('oficio', function () {
 /* Pruebas */
 Route::get('prueba', 'App\Http\Controllers\PruebaController@index');
 
+/*excel prueba*/ 
+Route::get('excel', 'App\Http\Controllers\ExcelController@downloadExcel');
