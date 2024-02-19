@@ -71,4 +71,6 @@ Route::get('oficio', function () {
 Route::get('prueba', 'App\Http\Controllers\PruebaController@index');
 
 /*excel prueba*/ 
-Route::get('excel', 'App\Http\Controllers\ExcelController@downloadExcel');
+Route::get('report-afiliados', 'App\Http\Controllers\AfiliadoController@reportAfiliado')->name('afiliado.report');
+Route::get('pdf-solicitud', 'App\Http\Controllers\AfiliadoController@solicitudPdfAfiliado')->name('afiliado.solicitudpdf');
+Route::get('excel/{estado}', 'App\Http\Controllers\ExcelController@downloadExcel')->name('afiliado.reportdownload');

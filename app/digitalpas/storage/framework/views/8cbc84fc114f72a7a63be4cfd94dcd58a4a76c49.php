@@ -352,9 +352,16 @@
                     <!--Encabezado de página-->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Gestión Sindical</h1>
-                        <a href="" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generar Reporte</a>
-                    </div>                
+                        <a href="<?php echo e(route('afiliado.report')); ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generar Reporte Excel</a>
+                    </div>     
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800"></h1>
+                        <a href="<?php echo e(route('afiliado.solicitudpdf')); ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generar solicitud PDF</a>
+                    </div>              
+
+                   
 
                         <!-- Area Graficos -->
                         <div class="col-xl-8 col-lg-7">
