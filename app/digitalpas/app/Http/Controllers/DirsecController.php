@@ -12,6 +12,7 @@ class DirsecController extends Controller
         $codigo = Session::get('codigo');
         $usuario = Session::get('usuario');
         $rol = Session::get('rol');
-        return view ('dirsec', ['codigo' => $codigo, 'usuario' => $usuario, 'rol' => $rol]);
+        $tipouser = Session::get('tipouser');
+        return view ('dirsec', ['codigo' => $codigo, 'usuario' => $usuario, 'rol' => $rol, 'tipouser' => $tipouser]);
     }
 }

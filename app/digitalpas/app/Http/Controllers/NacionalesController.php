@@ -12,6 +12,7 @@ class NacionalesController extends Controller
         $codigo = Session::get('codigo');
         $usuario = Session::get('usuario');
         $rol = Session::get('rol');
-        return view ('nacionales', ['codigo' => $codigo, 'usuario' => $usuario, 'rol' => $rol]);
+        $tipouser = Session::get('tipouser');
+        return view ('nacionales', ['codigo' => $codigo, 'usuario' => $usuario, 'rol' => $rol, 'tipouser' => $tipouser]);
     }
 }

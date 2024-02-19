@@ -39,15 +39,19 @@ class LoginController extends Controller
             // Redirigir según el rol del usuario
             switch ($query->rol) {
                 case '2':
+                    Session::put('tipouser', 'admin');
                     return redirect('/admin');
                     break;
                 case '3':
+                    Session::put('tipouser', 'nacionales');
                     return redirect('/nacionales');
                     break;
                 case '4':
+                    Session::put('tipouser', 'dirsec');
                     return redirect('/dirsec');
                     break;
                 case '7':
+                    Session::put('tipouser', 'afiliado');
                     return redirect('/afiliado');
                     break;
                 default:

@@ -8,12 +8,12 @@ class ChartData extends Model
 {
     
     // Nombre de la tabla en la base de datos
-    protected $table = 'nomina.afiliados';
+    protected $table = 'gestion.afiliacion';
 
     // Definir las columnas que pueden ser asignadas en masa
     protected $fillable = [
-        'columna_1',
-        'columna_2',
+        'fec_crea',
+        'cedula',
         // Agrega aquí el nombre de todas las columnas que necesites
     ];
 }
