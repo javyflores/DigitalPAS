@@ -6,13 +6,46 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Events\AfterSheet;
 use App\Models\Afiliacion;
-use Maatwebsite\Excel\Concerns\WithEvents;
-use Illuminate\Support\Facades\Storage;
-use Maatwebsite\Excel\Concerns\Exportable;
 use Illuminate\Contracts\View\View;
-use Maatwebsite\Excel\Concerns\WithColumnWidths;
-use Maatwebsite\Excel\Sheet;
+use Maatwebsite\Excel\Concerns\FromView;
+use Illuminate\Support\Facades\View as ViewFacade;
 
+class ExcelExport implements FromView
+{
+    private $idEstado;
+
+    public function __construct($idEstado)
+    {
+        $this->idEstado = $idEstado;
+    }
+
+    public function view(): View
+    {
+        $afiliaciones = Afiliacion::where('edo', $this->idEstado)->get();
+
+        // Puedes ajustar la lógica de consulta según tus necesidades
+        $resultados = Afiliacion::join('nomina.entidad', 'afiliacion.edo', '=', 'nomina.entidad.edo')
+            ->select('afiliacion.req_reg', 'afiliacion.req', 'nomina.entidad.entidad', 'afiliacion.cod_usr', 'afiliacion.cedula', 'afiliacion.p_nombre', 'afiliacion.p_apellido', 'afiliacion.fec_crea')
+            ->get();
+
+        return ViewFacade::make('export.exportexcel', [
+            'afiliaciones' => $afiliaciones,
+            'resultados' => $resultados,
+        ]);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/*
 class ExcelExport implements FromCollection, WithHeadings, WithColumnWidths
 {
     private $idEstado;
@@ -24,8 +57,14 @@ class ExcelExport implements FromCollection, WithHeadings, WithColumnWidths
 
     public function collection()
     {
-        return Afiliacion::where('edo', $this->idEstado)->get();
+      //  return Afiliacion::where('edo', $this->idEstado)->get();
+       return $resultados = Afiliacion::join('nomina.entidad', 'afiliacion.edo', '=', 'nomina.entidad.edo')
+       ->select('afiliacion.req_reg','afiliacion.req','nomina.entidad.entidad', 'afiliacion.cod_usr',
+        'afiliacion.cedula', 'afiliacion.p_nombre', 'afiliacion.p_apellido', 'afiliacion.fec_crea')
+       ->get();
+
     }
+
 
     public function headings(): array
     {
@@ -49,5 +88,14 @@ class ExcelExport implements FromCollection, WithHeadings, WithColumnWidths
         ];
     }
 
-   
+    // Adding "Hola Mundo" to line 1
+    public function registerEvents(): array
+    {
+        return [
+            AfterSheet::class => function (AfterSheet $event) {
+                $event->sheet->getDelegate()->setCellValue('A1', 'Hola Mundo');
+            },
+        ];
+    }
 }
+*/

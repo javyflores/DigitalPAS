@@ -25,8 +25,11 @@ Route::get('nacionales', 'App\Http\Controllers\NacionalesController@index');
 /* Directiva Secional*/
 Route::get('dirsec', 'App\Http\Controllers\DirsecController@index');
 
-/*grafico para que los secionales tenga la estadistica de los afiliados*/
+/*grafico para que me indique todos los afiliados de cada mes del año 2024*/
 Route::get('/grafico-datos', [ChartController::class, 'getChartData'])->name('grafico.datos');
+/*grafico para indicarme en cantidades la gestion de solicitudes, de becas, reclamos y clasificacion*/ 
+Route::get('/datos-nacionales', [ChartController::class, 'getDatosNacionales'])->name('datos.nacionales');
+
 
 
 /* Afiliado */

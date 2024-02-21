@@ -12,7 +12,9 @@ class AdminController extends Controller
         $codigo = Session::get('codigo');
         $usuario = Session::get('usuario');
         $rol = Session::get('rol');
+        $tipouser = Session::get('tipouser');
+        
     //    return view ('admin', ['codigo' => $codigo, 'usuario' => $usuario]);
-        return view ('admin', ['codigo' => $codigo, 'usuario' => $usuario, 'rol' => $rol]);
+        return view ('admin', ['codigo' => $codigo, 'usuario' => $usuario, 'rol' => $rol, 'tipouser' => $tipouser]);
     }
 }
