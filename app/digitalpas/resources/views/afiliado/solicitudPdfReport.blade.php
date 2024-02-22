@@ -115,10 +115,18 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link">
+            @if(Session::get('rol') == 2)
+                <a href="/admin" class="nav-link">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Panel Principal</span></a>
             </li>
+            @endif
+            @if(Session::get('rol') == 3)
+                <a href="/nacionales" class="nav-link">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Panel Principal</span></a>
+            </li>
+            @endif
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -372,64 +380,76 @@
                 <!-- Informacion Central -->
                 
                 <div class="container-fluid">
-                <div class="documento">
-    <div class="cintillo">
-      <!-- Logo del MPPE y otros órganos adscritos -->
-      <img src="{{ asset('img/cintilloOFC.png') }}">
+                    <div class="documento">
+                    <div class="container mt-3">
+
+      <h2>Relación de afiliaciones</h2>
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                   
+                    <th>Estado</th>
+                
+                    <th>Cédula</th>
+             
+                    <th>1er Nombre</th> 
+                    <th>2do Nombre</th>
+                    <th>1er Apellido</th>
+                    <th>2do Apellido</th>
+                    <th>registro de requerimiento</th>
+                    <th>codigo de usuario</th>
+                    <th>fecha de creacion de solicitud</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                    @if (!empty($afiliados))
+                        @foreach ($itemsPaginados as $index => $afiliado)
+                            <tr>
+                                
+                                <td>{{ $afiliado['entidad'] }}</td>
+                               
+                                <td>{{ $afiliado['cedula'] }}</td>
+                         
+                                <td>{{ $afiliado['p_nombre'] }}</td>
+                                <td>{{ $afiliado['s_nombre'] }}</td>
+                                <td>{{ $afiliado['p_apellido'] }}</td>
+                                <td>{{ $afiliado['s_apellido'] }}</td>
+                                <td>{{ $afiliado['req_reg'] }}</td>
+                                <td>{{ $afiliado['cod_usr'] }}</td>
+                                <td>{{ $afiliado['fec_crea'] }}</td>
+                               
+                            </tr>
+                        @endforeach
+                        @else
+                            <h5>No se encontró ningún Afiliado con ese número de Cédula</h5>             
+                    @endif
+                </tbody>
+            </table>
+        </div>
+        <p>Total de Solicitud de Afiliados: {{ $totalAfiliados }}</p>
+        <p>Pag actual: {{ $paginaActual }}</p>
+        <p>Pag:
+
+        <!-- Para mostrar la paginación -->
+        @php
+        for ($i = 1; $i <= $totalPaginas; $i++) {
+            echo '<a href="?pagina=' . $i . '">' . $i . '</a> ';
+        }
+        @endphp
+
+        </p>
+
+        <!--div class="container-fluid" align="right">
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-download fa-sm text-white-50"></i> Generar Reporte</a>
+        </div-->
+
     </div>
-
-    <div class="fecha">
-      <!-- Fecha -->
-      <p>Fecha: {{ \Carbon\Carbon::now()->locale('')->format('d \d\e F \d\e Y') }}</p>
-    </div>
-
-    <div class="numero">
-      <!-- Número de designación -->
-      <p>Oficio N°: P-001/2024</p>
-    </div>
-
-    <div class="destinatario">
-      <!-- Destinatario -->
-      <p>Ciudadano(a).</p>
-      <p>Nombre del Destinatario</p>
-      <p>Directora Asuntos Gremiales y Sindicales</p>
-      <p>Su Despacho.</p>
-    </div>
-
-
-    <!--button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generar Solicitud</button-->
-
-
     
-    <div class="contenido">
-
-      <!-- Cuerpo del oficio -->
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut estesse, asperiores eaque totam nulla repudiandae quasi, deserunt culpa exercitationem blanditiis laborum veniam laboriosam saepe reiciendis dolorem. Cum, ratione voluptatum!</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut estesse, asperiores eaque totam nulla repudiandae quasi, deserunt culpa exercitationem blanditiis laborum veniam laboriosam saepe reiciendis dolorem. Cum, ratione voluptatum!</p>
-      
-      <!-- Despedida o cierre del documento -->
-      <center>
-        <p>Atentamente,</p>
-      </center>
-      
-      <!-- Firma y posfirma -->
-      <div class="firma">
-        <p>Firma del Remitente</p>
-        <p>Cargo del Remitente</p>
-      </div>
-      
-      <!-- Iniciales de revisión y elaboración -->
-      <div class="iniciales">
-        <p>XXYY/xxyy</p>
-      </div>
-    </div>
-
-    <div class="pie">
-      <p>DIRECCIÓN: Edificio Sede Esquina de Salas, Sótano 2, Oficina S-23. Teléfonos: 0212-5068177 / 0414-1221989.  e-mail: sirtrame@gmail.com</p>
-    </div>
-
-    
-  </div>
+                </div>
 
   <div class="vista">
   

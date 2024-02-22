@@ -40,11 +40,18 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link">
+            <?php if(Session::get('rol') == 2): ?>
+                <a href="/admin" class="nav-link">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Panel Principal</span></a>
             </li>
-
+            <?php endif; ?>
+            <?php if(Session::get('rol') == 3): ?>
+                <a href="/nacionales" class="nav-link">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Panel Principal</span></a>
+            </li>
+            <?php endif; ?>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -72,6 +79,7 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
+            <?php if(Session::get('rol') == 2): ?>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
@@ -88,7 +96,7 @@
                     </div>
                 </div>
             </li>
-
+            <?php endif; ?>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"

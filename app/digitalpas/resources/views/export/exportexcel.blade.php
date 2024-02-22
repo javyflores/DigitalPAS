@@ -23,25 +23,25 @@
             <td></td>
         </tr>
         <tr>
-            <td>Registro de Requerimiento</td>
-            <td>Requerimiento</td>
-            <td>estado</td>
-            <td>Código del usuario</td>
-            <td>cédula</td>
-            <td>Primer nombre</td>
-            <td>primer apellido</td>
-            <td>fecha de creación</td>
+            <td width="200px" style="text-align:left;">Registro de Requerimiento</td>
+            <td width="200px" style="text-align:left;">Requerimiento</td>
+            <td width="200px" style="text-align:left;">estado</td>
+            <td width="200px" style="text-align:left;">Código del usuario</td>
+            <td width="200px" style="text-align:left;">cédula</td>
+            <td width="200px" style="text-align:left;">Primer nombre</td>
+            <td width="200px" style="text-align:left;">primer apellido</td>
+            <td width="200px" style="text-align:left;">fecha de creación</td>
         </tr>
         @foreach($afiliaciones as $afiliacion) 
             <tr>
-                <td>{{ $afiliacion->req_reg }}</td>
-                <td>{{ $afiliacion->req }}</td>
-                <td>{{ $afiliacion->edo }}</td>
-                <td>{{ $afiliacion->cod_usr }}</td>
-                <td>{{ $afiliacion->cedula }}</td>
-                <td>{{ $afiliacion->p_nombre }}</td>
-                <td>{{ $afiliacion->p_apellido }}</td>
-                <td>{{ $afiliacion->fec_crea }}</td>
+                <td style="text-align:right;">{{ $afiliacion->req_reg }}</td>
+                <td style="text-align:right;">{{ $afiliacion->req }}</td>
+                <td style="text-align:right;">{{ $afiliacion->edo }}</td>
+                <td style="text-align:right;">{{ $afiliacion->cod_usr }}</td>
+                <td style="text-align:right;">{{ $afiliacion->cedula }}</td>
+                <td style="text-align:right;">{{ $afiliacion->p_nombre }}</td>
+                <td style="text-align:right;">{{ $afiliacion->p_apellido }}</td>
+                <td style="text-align:right;">{{ $afiliacion->fec_crea }}</td>
             </tr>
         @endforeach
     </tbody>

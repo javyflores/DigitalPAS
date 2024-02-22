@@ -7,11 +7,11 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-
+                    
                         <div class="container-fluid">
                             <h3>Panel de Control</h3>
                         </div>
-
+                    
                         <!-- Topbar Search -->
                         <div class="container-fluid">
                         <form method="POST" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">

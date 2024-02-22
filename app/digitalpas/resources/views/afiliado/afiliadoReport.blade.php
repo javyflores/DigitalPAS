@@ -91,13 +91,22 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center">
+            @if(Session::get('rol') == 2)
+            <a href="/admin" class="sidebar-brand d-flex align-items-center justify-content-center">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">Reportes de Afiliaciones</div>
             </a>
-
+            @endif
+            @if(Session::get('rol') == 3)
+            <a href="/nacionales" class="sidebar-brand d-flex align-items-center justify-content-center">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Reportes de Afiliaciones</div>
+            </a>
+            @endif
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 

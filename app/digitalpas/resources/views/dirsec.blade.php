@@ -72,6 +72,7 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
+            @if(Session::get('rol') == 2)
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
@@ -88,7 +89,7 @@
                     </div>
                 </div>
             </li>
-
+            @endif
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
@@ -352,9 +353,14 @@
                     <!--Encabezado de página-->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Gestión Sindical</h1>
-                        <a href="" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generar Reporte</a>
-                    </div>                
+                        <a href="{{ route('afiliado.report') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generar Reporte Excel</a>
+                    </div>     
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800"></h1>
+                        <a href="{{ route('afiliado.solicitudpdf') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generar solicitud PDF</a>
+                    </div>                           
 
                         <!-- Area Graficos -->
                         <div class="col-xl-8 col-lg-7">

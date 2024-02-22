@@ -10,4 +10,6 @@ class Entidad extends Model
     use HasFactory;
 
     protected $table = 'nomina.entidad';
+    //protected $primaryKey = 'edo';
+    //protected $incrementing = false;
 }
