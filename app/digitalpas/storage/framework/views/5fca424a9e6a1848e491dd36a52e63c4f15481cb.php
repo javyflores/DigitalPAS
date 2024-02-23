@@ -90,43 +90,50 @@
                 </div>
             </li>
             <?php endif; ?>
+
+
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Afiliaciones</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Acciones:</h6>
+                        <a class="collapse-item" href="">Registrar</a>
+                        <a class="collapse-item" href="">Consultar</a>
+                        <a class="collapse-item" href="">Reportes</a>
+                    </div>
+                </div>
+            </li>
+
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Otra</span>
+                    <span>Sol. de Trámite</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Más:</h6>
-                        <a class="collapse-item" href="">Más</a>
-                        <a class="collapse-item" href="">Más</a>
-                        <a class="collapse-item" href="">Más</a>
+                        <h6 class="collapse-header">Acciones:</h6>
+                        <a class="collapse-item" href="">Registrar</a>
+                        <a class="collapse-item" href="">Consultar</a>
+                        <a class="collapse-item" href="">Reportes</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Complementos
-            </div>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Otra</span></a>
-            </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Otra</span></a>
+                    <span>Visitas</span></a>
             </li>
 
             <!-- Divider -->
@@ -156,8 +163,7 @@
 
                     <!-- Para Logos -->
                     <div align="center">
-                        <img src="<?php echo e(asset('img/Logo DigitalPAS.png')); ?>" alt="Logo" style="height:50px;">           
-                        <img src="<?php echo e(asset('img/Logo SIRTRAME.png')); ?>" alt="Logo" style="height:50px;">
+                        <img src="<?php echo e(asset('img/DigitalPASirtrame.jpg')); ?>" alt="Logo" style="height:50px;">           
                     </div>
 
                     <!-- Topbar Navbar -->
@@ -319,13 +325,13 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="perfil">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Perfil
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="carnet">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Configuración
+                                    Carnet
                                 </a>
 
                                 <div class="dropdown-divider"></div>

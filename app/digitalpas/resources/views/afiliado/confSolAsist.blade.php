@@ -94,16 +94,24 @@
 		  </script>
 	  </div>
 
+	</form>
+
 
 	  <div align="center">
-	    <button href="editSolAsist" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-window-close fa-sm text-white-50"></i> Eliminar Solicitud</button>
+	  	<form method="POST">
+	  	@csrf
+		  	<input type="hidden" name="reqr" id="reqr" value="{{ $reqr }}">
+		  	<input type="hidden" name="estado" id="estado" value="{{ $estado }}">
 
-	    <a href="editSolAsist" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-edit fa-sm text-white-50"></i> Editar Solicitud</a>
+		    <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-window-close fa-sm text-white-50"></i> Eliminar Solicitud</button>
+	    
+		    <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-edit fa-sm text-white-50"></i> Editar Solicitud</a>
 
+	    </form>
 	  </div>
-
-
 	</form>
+
+	
 </div>
 
 @endsection

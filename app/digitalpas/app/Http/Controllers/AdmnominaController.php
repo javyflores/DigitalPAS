@@ -22,7 +22,7 @@ class AdmnominaController extends Controller
         $afiliados = json_decode($afiliados, true);
         $totalAfiliados = count($afiliados);
         // Número de ítems por página
-        $itemsPorPagina = 50;
+        $itemsPorPagina = 20;
         // Número de página actual
         $paginaActual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
         // Índice de inicio para la paginación

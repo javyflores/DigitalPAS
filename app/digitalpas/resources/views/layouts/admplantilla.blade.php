@@ -90,51 +90,22 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Acciones:</h6>
-                        <a class="collapse-item" href="">Registrar</a>
+                        <a class="collapse-item" usuarioModal href="#" data-toggle="modal" data-target="#usuarioModal">Registrar</a>
                         <a class="collapse-item" href="">Consultar</a>
                         <a class="collapse-item" href="">Reportes</a>
                     </div>
                 </div>
             </li>
             @endif
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Otra</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Más:</h6>
-                        <a class="collapse-item" href="">Más</a>
-                        <a class="collapse-item" href="">Más</a>
-                        <a class="collapse-item" href="">Más</a>
-                    </div>
-                </div>
-            </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Complementos
+            <div >
+                <div class="modal-body">
+                        <a class="btn btn-primary" href="admin">Inicio</a>
+                </div>
             </div>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Otra</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Otra</span></a>
-            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -163,8 +134,7 @@
 
                     <!-- Para Logos -->
                     <div align="center">
-                        <img src="{{ asset('img/Logo DigitalPAS.png') }}" alt="Logo" style="height:50px;">           
-                        <img src="{{ asset('img/Logo SIRTRAME.png') }}" alt="Logo" style="height:50px;">
+                        <img src="{{ asset('img/DigitalPASirtrame.jpg') }}" alt="Logo" style="height:50px;">           
                     </div>
 
                     <!-- Topbar Navbar -->
@@ -318,21 +288,21 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ $usuario }}</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ session('usuario') }}</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
-                                <h5>{{ $codigo }}</h5>
+                                <h5>{{ session('codigo') }}</h5>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="perfil">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Perfil
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="carnet">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Configuración
+                                    Carnet
                                 </a>
 
                                 <div class="dropdown-divider"></div>
@@ -381,6 +351,30 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <img src="{{ asset('img/to-top.svg') }}">
     </a>
+
+    <!-- Usuario Modal-->
+    <div class="modal fade" id="usuarioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">¿Qué tipo de usuario va a Registrar?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Seleccione el tipo de usuario a Registrar.</div>
+                <div class="modal-footer">
+
+                    <a class="btn btn-primary" href="regafiliado">Afiliado</a>
+                    <a class="btn btn-primary" href="regseccional">Dir. Seccional</a>
+                    <a class="btn btn-primary" href="regnacional">Dir. Nacional</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

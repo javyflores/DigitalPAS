@@ -9,17 +9,28 @@ Route::post('login', 'App\Http\Controllers\LoginController@login');
 /* salida */
 Route::get('/logout', 'App\Http\Controllers\LoginController@logout')->name('logout');
 
-
-
-
 /* Administrador */
 Route::get('admin', 'App\Http\Controllers\AdminController@index');
+
 Route::get('admnomina', 'App\Http\Controllers\AdmnominaController@index');
 Route::post('admnomina', 'App\Http\Controllers\AdmnominaController@consulta');
+
+/* Administrador Registrar Usuario*/
+Route::get('regafiliado', 'App\Http\Controllers\RegafiliadoController@index');
+Route::post('regafiliado', 'App\Http\Controllers\RegafiliadoController@crear');
+
+Route::get('regseccional', 'App\Http\Controllers\RegseccionalController@index');
+Route::post('regseccional', 'App\Http\Controllers\RegseccionalController@crear');
+
+Route::get('regnacional', 'App\Http\Controllers\RegnacionalController@index');
+Route::post('regnacional', 'App\Http\Controllers\RegnacionalController@crear');
+
 
 
 /* Directiva Nacional */
 Route::get('nacionales', 'App\Http\Controllers\NacionalesController@index');
+
+
 
 
 /* Directiva Secional*/
@@ -38,13 +49,22 @@ Route::get('afiliado', 'App\Http\Controllers\AfiliadoController@index');
 Route::get('afilnewreq', 'App\Http\Controllers\AfilnewreqController@index');
 Route::post('afilnewreq', 'App\Http\Controllers\AfilnewreqController@reqnuevo');
 
-Route::get('confSolAsist', 'App\Http\Controllers\ConfSolAsistController@prueba');
+Route::get('confSolAsist', 'App\Http\Controllers\ConfSolAsistController@index');
+Route::post('confSolAsist', 'App\Http\Controllers\ConfSolAsistController@edit');
 
 Route::get('editSolAsist', 'App\Http\Controllers\EditSolAsistController@editar');
 Route::put('editSolAsist', 'App\Http\Controllers\EditSolAsistController@update');
 
-Route::get('/users/{id}/edit', 'UserController@edit')->name('users.edit');
-Route::put('/users/{id}', 'UserController@update')->name('users.update');
+Route::get('afilnewvisit', 'App\Http\Controllers\VisitasController@index');
+Route::post('afilnewvisit', 'App\Http\Controllers\VisitasController@visitnew');
+
+Route::get('confSolVisit', 'App\Http\Controllers\VisitasController@conf');
+
+Route::get('segsolicitudes', 'App\Http\Controllers\SegsolicitudesController@index');
+Route::post('segsolicitudes', 'App\Http\Controllers\SegsolicitudesController@consulta');
+
+Route::get('segsolcons', 'App\Http\Controllers\segsolconsController@index');
+
 
 /* Perfil */
 Route::get('perfil', function () {

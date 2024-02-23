@@ -8,7 +8,7 @@
     <meta name="description" content="Plataforma Digital de Asistencia Sindical">
     <meta name="author" content="@JAVYFLORES">
 
-    <title>DigitalPASirtrame-Panel</title>
+    <title>DigitalPASirtrame</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -21,18 +21,16 @@
 
 <body>
 
-
-    <h1>Hola Bienvenido</h1>
-
+    <h5 align="center">Saludos! {{ session('usuario') }}</h5>
+    <div class="imp">
     <section style="background-color: #eee;">
       <div class="container py-5">
         <div class="row">
           <div class="col">
             <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
               <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">User</a></li>
-                <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+                <li><h4><strong>Ficha Digital del Afiliado(a) </strong></h4></li>
+                <li><h4>: / ID: {{ session('id_afi') }}</h4></li>
               </ol>
             </nav>
           </div>
@@ -44,7 +42,7 @@
               <div class="card-body text-center">
                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                   class="rounded-circle img-fluid" style="width: 150px;">
-                <h5 class="my-3">John Smith</h5>
+                <h5 class="my-3">{{ session('usuario') }}</h5>
                 <p class="text-muted mb-1">Full Stack Developer</p>
                 <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
                 <div class="d-flex justify-content-center mb-2">
@@ -85,10 +83,10 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-sm-3">
-                    <p class="mb-0">Full Name</p>
+                    <p class="mb-0">Nombre y Apellido</p>
                   </div>
                   <div class="col-sm-9">
-                    <p class="text-muted mb-0">Johnatan Smith</p>
+                    <p class="text-muted mb-0">{{ session('usuario') }}</p>
                   </div>
                 </div>
                 <hr>
@@ -103,16 +101,16 @@
                 <hr>
                 <div class="row">
                   <div class="col-sm-3">
-                    <p class="mb-0">Phone</p>
+                    <p class="mb-0">Teléfono</p>
                   </div>
                   <div class="col-sm-9">
-                    <p class="text-muted mb-0">(097) 234-5678</p>
+                    <p class="text-muted mb-0">(0212) 5068177</p>
                   </div>
                 </div>
                 <hr>
                 <div class="row">
                   <div class="col-sm-3">
-                    <p class="mb-0">Mobile</p>
+                    <p class="mb-0">Celeular</p>
                   </div>
                   <div class="col-sm-9">
                     <p class="text-muted mb-0">(098) 765-4321</p>
@@ -121,10 +119,10 @@
                 <hr>
                 <div class="row">
                   <div class="col-sm-3">
-                    <p class="mb-0">Address</p>
+                    <p class="mb-0">Dirección</p>
                   </div>
                   <div class="col-sm-9">
-                    <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                    <p class="text-muted mb-0">Esq. de Salas. Altagracia- DC</p>
                   </div>
                 </div>
               </div>
@@ -201,13 +199,20 @@
         </div>
       </div>
     </section>
+    </div>
+    <div align="center">
+    <input type="submit" value="Imprimir" onclick="printDocument()">
+    <script>
+      function printDocument() {
+        var printContents = document.getElementsByClassName("imp")[0].innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+      }
+    </script>
+    </div>
 
-
-
-
-
-
-    <!-- <script src="{{ asset('js/ani.js') }}"></script>-->
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

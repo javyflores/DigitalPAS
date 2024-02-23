@@ -8,7 +8,7 @@
     <meta name="description" content="Plataforma Digital de Asistencia Sindical">
     <meta name="author" content="@JAVYFLORES">
 
-    <title>DigitalPASirtrame-Panel</title>
+    <title>DigitalPASirtrame</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -32,7 +32,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Afiliado</div>
+                <div class="sidebar-brand-text mx-3">{{session('tipouser')}}</div>
             </a>
 
             <!-- Divider -->
@@ -83,6 +83,16 @@
                     <span>Seguimiento de Solicitudes</span></a>
             </li>
 
+            <div class="sidebar-heading"></div>
+
+            <div >
+                <div class="modal-body">
+                        <a class="btn btn-primary" href="afiliado">Inicio</a>
+                </div>
+            </div>
+
+            <hr class="sidebar-divider">
+
         <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -107,8 +117,8 @@
 
                     <!-- Para Logos -->
                     <div align="center">
-                        <img src="{{ asset('img/Logo DigitalPAS.png') }}" alt="Logo" style="height:50px;">           
-                        <img src="{{ asset('img/Logo SIRTRAME.png') }}" alt="Logo" style="height:50px;">
+                        <img src="{{ asset('img/DigitalPASirtrame.jpg') }}" alt="Logo" style="height:50px;">           
+
                     </div>
 
                     <!-- Topbar Navbar -->
