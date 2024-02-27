@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Plataforma Digital de Asistencia Sindical">
     <meta name="author" content="@JAVYFLORES">
-
-    <title>DigitalPASirtrame-Panel</title>
+    <!-- Favicon -->
+    <link href="<?php echo e(asset('img/Logo SIRTRAME.png')); ?>" rel="icon" type="image/png">
+    <title>DigitalPASirtrame</title>
      <!-- Agrega la referencia a Font Awesome -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 

@@ -26,15 +26,40 @@ Route::get('regnacional', 'App\Http\Controllers\RegnacionalController@index');
 Route::post('regnacional', 'App\Http\Controllers\RegnacionalController@crear');
 
 
-
 /* Directiva Nacional */
 Route::get('nacionales', 'App\Http\Controllers\NacionalesController@index');
 
 
-
-
-/* Directiva Secional*/
+/* Directiva Seccional*/
 Route::get('dirsec', 'App\Http\Controllers\DirsecController@index');
+
+Route::get('afiliacion', 'App\Http\Controllers\DirsecController@afiliacion');
+Route::post('afiliacion', 'App\Http\Controllers\DirsecController@regafiliacion');
+Route::get('confAfiliacion', 'App\Http\Controllers\DirsecController@confafi');
+
+Route::get('sol_tramite', 'App\Http\Controllers\DirsecController@sol_tramite');
+Route::post('sol_tramite', 'App\Http\Controllers\DirsecController@regsoltramite');
+Route::get('confsolt', 'App\Http\Controllers\DirsecController@confsolt');
+
+Route::get('visitas', 'App\Http\Controllers\DirsecController@visitas');
+Route::post('visitas', 'App\Http\Controllers\DirsecController@reg_visita');
+Route::get('confVisit', 'App\Http\Controllers\DirsecController@confVisit');
+
+Route::get('secnomina', 'App\Http\Controllers\SecnominaController@index');
+Route::post('secnomina', 'App\Http\Controllers\SecnominaController@consulta');
+
+Route::get('secafiliaciones', 'App\Http\Controllers\SecafiliacionesController@index');
+Route::post('secafiliaciones', 'App\Http\Controllers\SecafiliacionesController@consulta');
+Route::get('secafilcons', 'App\Http\Controllers\SecafilconsController@index');
+
+Route::get('secsoltramite', 'App\Http\Controllers\SecsoltramiteController@index');
+Route::post('secsoltramite', 'App\Http\Controllers\SecsoltramiteController@consulta');
+Route::get('secsoltracons', 'App\Http\Controllers\SecsoltraconsController@index');
+
+Route::get('secvisitas', 'App\Http\Controllers\SecvisitasController@index');
+Route::post('secvisitas', 'App\Http\Controllers\SecvisitasController@consulta');
+Route::get('secvisitcons', 'App\Http\Controllers\SecvisitconsController@index');
+
 
 /*grafico para que me indique todos los afiliados de cada mes del año 2024*/
 Route::get('/grafico-datos', [ChartController::class, 'getChartData'])->name('grafico.datos');

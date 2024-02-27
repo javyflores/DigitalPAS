@@ -43,8 +43,7 @@
 	<form>
 	  <div class="container">
 	    <h4>Datos de su Requerimiento</h4>
-	    <p>Por Favor verifique los datos de su Solicitud de Beneficio Contractual.<br>
-	    Si los datos son correctos, confirme e imprima el comprobante.</p>
+	    <p>Por Favor imprima el comprobante.</p>
 	  </div>
 
 	  <div class="imp">
@@ -82,7 +81,7 @@
 	  </div>
 
 	  <div class="container">
-	    <input type="submit" value="Confirmar e Imprimir" onclick="printDocument()">
+	    <input type="submit" value="Imprimir" onclick="printDocument()">
 		  <script>
 		    function printDocument() {
 		      var printContents = document.getElementsByClassName("imp")[0].innerHTML;
@@ -96,22 +95,6 @@
 
 	</form>
 
-
-	  <div align="center">
-	  	<form method="POST">
-	  	<?php echo csrf_field(); ?>
-		  	<input type="hidden" name="reqr" id="reqr" value="<?php echo e($reqr); ?>">
-		  	<input type="hidden" name="estado" id="estado" value="<?php echo e($estado); ?>">
-
-		    <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-window-close fa-sm text-white-50"></i> Eliminar Solicitud</button>
-	    
-		    <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-edit fa-sm text-white-50"></i> Editar Solicitud</a>
-
-	    </form>
-	  </div>
-	</form>
-
-	
 </div>
 
 <?php $__env->stopSection(); ?>

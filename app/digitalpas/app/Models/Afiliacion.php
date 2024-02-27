@@ -10,5 +10,6 @@ class Afiliacion extends Model
     use HasFactory;
 
     protected $table = 'gestion.afiliacion';
-    protected $primaryKey = 'req_reg';
+    protected $primaryKey = 'req';
+    public $timestamps = false;
 }

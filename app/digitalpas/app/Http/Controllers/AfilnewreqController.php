@@ -48,7 +48,7 @@ class AfilnewreqController extends Controller
         $reqregnew = Requerimiento::getNuevoReqReg();
         $req_reg = $reqregnew->req_reg;
 
-        $req = "As$sec-$cod_tipo-$req_reg";
+        $req = "S$sec-$cod_tipo-$req_reg";
 
         $estado = $request->input('estado');
         $reqr = $req;
