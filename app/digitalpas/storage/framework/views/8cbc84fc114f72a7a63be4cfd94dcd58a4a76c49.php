@@ -83,7 +83,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Acciones:</h6>
-                        <a class="collapse-item" href="">Registrar</a>
+                        <a class="collapse-item" href="<?php echo e(route('registro.formulario')); ?>">Registrar</a>
                         <a class="collapse-item" href="">Consultar</a>
                         <a class="collapse-item" href="">Reportes</a>
                     </div>

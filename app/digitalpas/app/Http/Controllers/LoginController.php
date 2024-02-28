@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Importar el facade Auth
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
+
 
 class LoginController extends Controller
 {
@@ -21,14 +23,39 @@ class LoginController extends Controller
         if (!ctype_digit($password)) {
             return redirect('/login')->with('error', 'La contraseña debe contener solo números');
         }
-
+        // Encriptar la contraseña proporcionada por el usuario
+        //$passwordEncriptada = bcrypt($password);
+        //return $passwordEncriptada;
+        
+        $consulta = DB::table('usuario.usuarios')
+            ->select('password')
+            ->where('cedula', $cedula)
+            ->first();
+        
+        $contradesDesEncriptada = $consulta->password;
+        //return  $contradesDesEncriptada;
+        /*
+        if ($contradesDesEncriptada == $password){
+            return "si es correcto, son iguales";
+        }
+        */
+/*
         $query = DB::table('usuario.usuarios')
             ->select('id_afi', 'cod_usr', 'cedula', 'nombre', 'rol')
             ->where('cedula', $cedula)
-            ->where('password', $password)
+            ->where('password', $password) // Utilizar la contraseña encriptada en la consulta
             ->first();
-
-        if ($query) {
+*/
+       // return $consulta;
+      //  if ($query) {
+        //if ($contradesDesEncriptada == $password){
+        if (Hash::check($password, $contradesDesEncriptada)) {
+            $query = DB::table('usuario.usuarios')
+            ->select('id_afi', 'cod_usr', 'cedula', 'nombre', 'rol')
+            ->where('cedula', $cedula)
+            //->where('password', $password) // Utilizar la contraseña encriptada en la consulta
+            ->first();
+            
             // Guardamos la información del usuario en la sesión
             Session::put('codigo', $query->cod_usr);
             Session::put('id_afi', $query->id_afi);

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\RegistuserController;
 
 /* Login */
 Route::get('login', 'App\Http\Controllers\LoginController@index')->name('login');
@@ -30,6 +31,13 @@ Route::get('/grafico-datos', [ChartController::class, 'getChartData'])->name('gr
 /*grafico para indicarme en cantidades la gestion de solicitudes, de becas, reclamos y clasificacion*/ 
 Route::get('/datos-nacionales', [ChartController::class, 'getDatosNacionales'])->name('datos.nacionales');
 
+/*vista de registro de usuarios*/
+Route::get('/registro', [RegistuserController::class, 'mostrarFormulario'])->name('registro.formulario');
+//Route::post('/registro', [RegistuserController::class, 'guardar'])->name('registro.guardar');
+Route::post('/generar-codigo', [RegistuserController::class, 'generarCodigo']);
+Route::post('/registro/guardar', [RegistuserController::class, 'guardarUsuario'])->name('registro.guardar');
+
+
 
 
 /* Afiliado */
@@ -43,8 +51,8 @@ Route::get('confSolAsist', 'App\Http\Controllers\ConfSolAsistController@prueba')
 Route::get('editSolAsist', 'App\Http\Controllers\EditSolAsistController@editar');
 Route::put('editSolAsist', 'App\Http\Controllers\EditSolAsistController@update');
 
-Route::get('/users/{id}/edit', 'UserController@edit')->name('users.edit');
-Route::put('/users/{id}', 'UserController@update')->name('users.update');
+//Route::get('/users/{id}/edit', 'UserController@edit')->name('users.edit');
+//Route::put('/users/{id}', 'UserController@update')->name('users.update');
 
 /* Perfil */
 Route::get('perfil', function () {

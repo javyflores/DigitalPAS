@@ -11,37 +11,37 @@ use Laravel\Sanctum\HasApiTokens;
 
 
 
-class Usuarios extends Model
-{
-    use HasFactory;
-
-    protected $table = 'usuario.usuarios';
-    protected $connection = 'digitalpas';
-}
-
-
 class Usuarios extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = 'usuario.usuarios'; // Nombre de la tabla en la base de datos
+   // protected $connection = 'digitalpas'; // Nombre de la conexión a la base de datos
+   protected $primaryKey = 'cod_usr';
+   public $incrementing = true;
+
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $fillable = [
+       
+        'id_afi',
         'cedula',
-        'password',
+        'nombre',
+       // 'password',
+        'rol',
+        'email',
     ];
 
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $hidden = [
         'password',
         'remember_token',
     ];
-
 }
