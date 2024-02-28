@@ -38,6 +38,140 @@ class RegistuserController extends Controller
             'estados' => $estados // Pasar los estados a la vista
         ]);
     }
+
+    public function mostrarUsuarios()
+    {
+        $codigo = Session::get('codigo');
+        $usuario = Session::get('usuario');
+        $rol = Session::get('rol');
+        $tipouser = Session::get('tipouser');
+        $cargos = Session::get('cargos');
+        
+        // Obtener todos los estados
+        $estados = Entidad::all();
+        $roles = Role::all();
+        $cargos = Cargos::all();
+
+        //*datatable*//
+
+        $query = DB::select("SELECT * FROM usuario.usuarios");
+/*
+       $usuarios = Usuarios::select('usuarios.*', 'roles.name AS rol_descripcion', 'cargos.cargo AS cargo_descripcion')
+        ->join('roles', 'usuarios.rol', '=', 'roles.id')
+        ->join('cargos', 'usuarios.cod_cargo', '=', 'cargos.id')
+        ->get();
+*/
+
+        $afiliados = json_encode($query);
+        $afiliados = json_decode($afiliados, true);
+        $totalAfiliados = count($afiliados);
+        // Número de ítems por página
+        $itemsPorPagina = 20;
+        // Número de página actual
+        $paginaActual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+        // Índice de inicio para la paginación
+        $indiceInicio = ($paginaActual - 1) * $itemsPorPagina;
+        // Obtener los ítems para la página actual
+        $itemsPaginados = array_slice($afiliados, $indiceInicio, $itemsPorPagina);
+        // Calcular el número total de páginas
+        $totalPaginas = ceil(count($afiliados) / $itemsPorPagina);
+
+        
+        return view('indexusers', [
+            'codigo' => $codigo,
+            'usuario' => $usuario,
+            'rol' => $rol,
+            'roles'=> $roles,
+            /*inicio datos datatables*/ 
+            'afiliados' => $afiliados,
+            'totalAfiliados' => $totalAfiliados,
+            'itemsPorPagina' => $itemsPorPagina,
+            'paginaActual' => $paginaActual,
+            'indiceInicio' => $indiceInicio,
+            'itemsPaginados' => $itemsPaginados,
+            'totalPaginas' => $totalPaginas,
+            'tipouser' => $tipouser,
+            /*fin datos datatables*/ 
+            'cargos' => $cargos,
+            'estados' => $estados // Pasar los estados a la vista
+        ]);
+    }
+
+
+
+    public function consulta()
+    {
+        $codigo = Session::get('codigo');
+        $usuario = Session::get('usuario');
+        $rol = Session::get('rol');
+        $tipouser = Session::get('tipouser');
+        $cargos = Session::get('cargos');
+        
+        // Obtener todos los estados
+        $estados = Entidad::all();
+        $roles = Role::all();
+        $cargos = Cargos::all();
+
+        //*datatable*//
+        if (isset($_POST['cedula'])){
+
+            $cedula= $_POST['cedula'];
+            /*
+            $query = DB::table('usuario.usuarios as u')
+                ->join('usuario.roles as r', 'u.rol', '=', 'r.id')
+                ->join('nomina.cargos as c', 'u.cod_cargo', '=', 'c.id')
+                ->select('u.*', 'r.name as rol_descripcion', 'c.cargo as cargo_descripcion')
+                ->where('u.cedula', $cedula)
+                ->get();
+
+                */
+                /*
+            $query = Usuario::select('usuarios.*', 'roles.name AS rol_descripcion', 'cargos.cargo AS cargo_descripcion')
+            ->join('roles', 'usuarios.rol', '=', 'roles.id')
+            ->join('cargos', 'usuarios.cod_cargo', '=', 'cargos.id')
+            ->where('usuarios.cedula', '=', $cedula)
+            ->get();
+            */
+            $query = DB::select("SELECT * FROM usuario.usuarios WHERE cedula = '$cedula'");
+            $afiliados = json_encode($query);
+            $afiliados = json_decode($afiliados, true);
+            $totalAfiliados = count($afiliados);
+            // Número de ítems por página
+            $itemsPorPagina = 20;
+            // Número de página actual
+            $paginaActual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+            // Índice de inicio para la paginación
+            $indiceInicio = ($paginaActual - 1) * $itemsPorPagina;
+            // Obtener los ítems para la página actual
+            $itemsPaginados = array_slice($afiliados, $indiceInicio, $itemsPorPagina);
+            // Calcular el número total de páginas
+            $totalPaginas = ceil(count($afiliados) / $itemsPorPagina);
+
+            
+            return view('indexusers', [
+                'codigo' => $codigo,
+                'usuario' => $usuario,
+                'rol' => $rol,
+                'roles'=> $roles,
+                /*inicio datos datatables*/ 
+                'afiliados' => $afiliados,
+                'totalAfiliados' => $totalAfiliados,
+                'itemsPorPagina' => $itemsPorPagina,
+                'paginaActual' => $paginaActual,
+                'indiceInicio' => $indiceInicio,
+                'itemsPaginados' => $itemsPaginados,
+                'totalPaginas' => $totalPaginas,
+                'tipouser' => $tipouser,
+                /*fin datos datatables*/ 
+                'cargos' => $cargos,
+                'estados' => $estados // Pasar los estados a la vista
+            ]);
+        }
+    }
+
+
+
+
     public function generarCodigo(Request $request)
     {
         $estado = $request->estado;
@@ -72,12 +206,17 @@ class RegistuserController extends Controller
         ->select('password')
         ->where('cedula', $cedulaConsulta)
         ->first();
+
+        $consulta2 = DB::table('nomina.afiliados')
+        ->select('cedula')
+        ->where('cedula', $cedulaConsulta)
+        ->first();
        // return $consulta;
        
        $dirRol = $request->rol;
        //dir_nac=3
        //dir_sec=4
-        if(!$consulta){
+        if(!$consulta && $consulta2){
             /*
             if($dirRol == 3 ){
                 $registerNacional = new Dirnacional();

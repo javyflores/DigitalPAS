@@ -57,7 +57,8 @@ class LoginController extends Controller
             ->first();
             
             // Guardamos la información del usuario en la sesión
-            Session::put('codigo', $query->cod_usr);
+           // Session::put('codigo', $query->cod_usr);
+           Session::put('codigo', $query->id_afi);
             Session::put('id_afi', $query->id_afi);
             Session::put('cedula', $query->cedula);
             Session::put('usuario', $query->nombre);

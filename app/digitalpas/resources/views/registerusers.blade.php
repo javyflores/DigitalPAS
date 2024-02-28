@@ -459,7 +459,7 @@
     <select class="form-control" name="cargos" id="cargos" required>
         <option value="" disabled selected>Seleccionar cargo</option>
         @foreach($cargos as $rows)
-            <option value="{{ $rows->cod_cargo }}">{{ $rows->cargo }}</option>
+            <option value="{{ $rows->id }}">{{ $rows->cargo }}</option>
         @endforeach
     </select>
 </div>

@@ -372,82 +372,126 @@
                 <!-- aqui el registro de usuarios-->
                     <div class="container-fluid">
                    <!-- <form action="<?php echo e(route('registro.guardar')); ?>" method="POST">-->
-    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-    <div class="card" style="width: 800px;">
-    <div class="card-body">
-        <h5 class="card-title">Registro de Usuarios</h5>
-        <form action="<?php echo e(route('registro.guardar')); ?>" method="POST">
-   
-            <?php echo csrf_field(); ?>
+                    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+                    <div class="card" style="width: 800px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Registro de Usuarios</h5>
+                        <form action="<?php echo e(route('registro.guardar')); ?>" method="POST">
+
+<?php echo csrf_field(); ?>
+
+<!-- Estado -->
+<div class="form-group">
+    <label for="estado">Estado:</label>
+    <select class="form-control" name="estado" id="selectEstado" required>
+        <option value="" disabled selected>Seleccionar Estado</option>
+        <?php $__currentLoopData = $estados; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <option value="<?php echo e($row->edo); ?>"><?php echo e($row->entidad); ?></option>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </select>
+</div>
+
+<!-- Código de usuario -->
+<div class="form-group">
+    <label for="codigousuario">Código de Usuario:</label>
+    <input type="text" class="form-control" id="codigousuario" name="codigousuario" readonly>
+</div>
+
+<!-- Cédula -->
+<?php if(session('error')): ?>
+    <div class="alert alert-danger">
+        <?php echo e(session('error')); ?>
+
+    </div>
+<?php endif; ?>
+
+<div class="form-group">
+    <label for="cedula">Cédula:</label>
+    <input type="text" class="form-control" id="cedula" name="cedula" maxlength="8" pattern="[0-9]+" required>
+    <div class="invalid-feedback">Por favor ingrese una cédula válida (máximo 8 dígitos numéricos).</div>
+    <!-- Agrega el mensaje de error personalizado para la validación de cédula -->
+    <?php if(Session::has('error_cedula')): ?>
+        <div class="invalid-feedback"><?php echo e(Session::get('error_cedula')); ?></div>
+    <?php endif; ?>
+</div>
 
 
-                            <!-- Estado -->
-                            <div class="form-group">
-                                <label for="estado">Estado:</label>
-                                <select class="form-control" name="estado" id="selectEstado">
-                                    <option value="" disabled selected>Seleccionar Estado</option>
-                                    <?php $__currentLoopData = $estados; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option value="<?php echo e($row->edo); ?>"><?php echo e($row->entidad); ?></option>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </select>
-                            </div>
+<!-- Nombre -->
+<div class="form-group">
+    <label for="nombre">Nombre:</label>
+    <input type="text" class="form-control" id="nombre" name="nombre" pattern="[a-zA-Z ]+" required>
+    <div class="invalid-feedback">Por favor ingrese un nombre válido (solo letras y espacios).</div>
+</div>
 
-                            <!-- Código de usuario -->
-                            <div class="form-group">
-                                <label for="codigousuario">Código de Usuario:</label>
-                                <input type="text" class="form-control" id="codigousuario" name="codigousuario" readonly>
-                            </div>
-                            <!-- Cédula -->
-                            <div class="form-group">
-                                <label for="cedula">Cédula:</label>
-                                <input type="text" class="form-control" id="cedula" name="cedula" maxlength="8" pattern="[0-9]+" required>
-                            </div>
+<!-- Contraseña -->
+<div class="form-group">
+    <label for="contrasena">Contraseña:</label>
+    <div class="input-group">
+        <input type="password" class="form-control" id="contrasena" name="contrasena" pattern="[0-9]+" required>
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" onclick="mostrarContrasena()">Mostrar</button>
+        </div>
+    </div>
+    <div id="contrasenaFeedback" class="invalid-feedback" style="display: none;">Por favor ingrese una contraseña válida (solo números).</div>
+</div>
 
-                            <!-- Nombre -->
-                            <div class="form-group">
-                                <label for="nombre">Nombre:</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" pattern="[a-zA-Z ]+" required>
-                            </div>
 
-                            <!-- Contraseña -->
-                            <div class="form-group">
-                                <label for="contrasena">Contraseña:</label>
-                                <div class="input-group">
-                                    <input type="password" class="form-control" id="contrasena" name="contrasena" required>
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button" onclick="mostrarContrasena()">Mostrar</button>
-                                    </div>
-                                </div>
-                            </div>
+<!-- Confirmación de Contraseña -->
+<div class="form-group">
+    <label for="confirmacion_contrasena">Confirmar Contraseña:</label>
+    <input type="password" class="form-control" id="confirmacion_contrasena" name="confirmacion_contrasena" required>
+    <div class="invalid-feedback">Por favor confirme la contraseña.</div>
+    <div id="passwordMatch" class="invalid-feedback" style="display: none;">Las contraseñas no coinciden.</div>
+</div>
 
-                            <!-- Confirmación de Contraseña -->
-                            <div class="form-group">
-                                <label for="confirmacion_contrasena">Confirmar Contraseña:</label>
-                                <input type="password" class="form-control" id="confirmacion_contrasena" name="confirmacion_contrasena" required>
-                            </div>
+<!-- Rol -->
+<div class="form-group">
+    <label for="rol">Rol:</label>
+    <select class="form-control" id="rol" name="rol" required>
+        <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row2): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <option value="<?php echo e($row2->id); ?>"><?php echo e($row2->name); ?></option>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </select>
+    <div class="invalid-feedback">Por favor seleccione un rol.</div>
 
-                            <!-- Rol -->
-                            <div class="form-group">
-                                <label for="rol">Rol:</label>
-                                <select class="form-control" id="rol" name="rol" required>
-                                <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row2): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option value="<?php echo e($row2->id); ?>"><?php echo e($row2->name); ?></option>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </select>
-                            </div>
+    <!--Cargo -->
+<div class="form-group">
+    <label for="estado">Cargo:</label>
+    <select class="form-control" name="cargos" id="cargos" required>
+        <option value="" disabled selected>Seleccionar cargo</option>
+        <?php $__currentLoopData = $cargos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $rows): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <option value="<?php echo e($rows->id); ?>"><?php echo e($rows->cargo); ?></option>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </select>
+</div>
+<!-- Email -->
+<div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" class="form-control" id="email" name="email" required>
+    <div class="invalid-feedback">Por favor ingrese un correo electrónico válido.</div>
+</div>
 
-                            <!-- Email -->
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
+<div style="display: flex; justify-content: center;">
+    <button type="submit" class="btn btn-primary btn-lg">
+        <i class="fas fa-user-plus mr-1"></i> Registrar
+    </button>
+</div>
 
-                            <div style="display: flex; justify-content: center;">
-                                <button type="submit" class="btn btn-primary btn-lg">
-                                    <i class="fas fa-user-plus mr-1"></i> Registrar
-                                </button>
-                            </div>
-        </form>
+<?php if(session('success')): ?>
+    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert" style="width: 400px; margin: auto;">
+        <strong>¡Registrado con éxito!</strong> <?php echo e(session('success')); ?>
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php endif; ?>
+
+
+</form>
+
+
+
     </div>
 </div>
 </div>
@@ -462,6 +506,38 @@
         }
     }
     
+// Validación de coincidencia de contraseña
+document.getElementById("contrasena").addEventListener("input", function() {
+    var contrasena = document.getElementById("contrasena").value;
+    var confirmacionContrasena = document.getElementById("confirmacion_contrasena").value;
+    if (contrasena !== confirmacionContrasena) {
+        document.getElementById("passwordMatch").style.display = "block";
+    } else {
+        document.getElementById("passwordMatch").style.display = "none";
+    }
+});
+
+document.getElementById("confirmacion_contrasena").addEventListener("input", function() {
+    var contrasena = document.getElementById("contrasena").value;
+    var confirmacionContrasena = document.getElementById("confirmacion_contrasena").value;
+    if (contrasena !== confirmacionContrasena) {
+        document.getElementById("passwordMatch").style.display = "block";
+    } else {
+        document.getElementById("passwordMatch").style.display = "none";
+    }
+});
+document.addEventListener('DOMContentLoaded', function () {
+    var contrasenaInput = document.getElementById('contrasena');
+    var contrasenaFeedback = document.getElementById('contrasenaFeedback');
+
+    contrasenaInput.addEventListener('input', function () {
+        if (!this.validity.valid) {
+            contrasenaFeedback.style.display = 'block';
+        } else {
+            contrasenaFeedback.style.display = 'none';
+        }
+    });
+});
 </script>
                     </div>
 

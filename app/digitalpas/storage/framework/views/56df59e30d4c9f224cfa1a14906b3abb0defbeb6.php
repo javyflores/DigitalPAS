@@ -5,12 +5,6 @@
 
 <h5>Hola <?php echo e($usuario); ?> ¿Qué Beneficio Contractual deseas gestionar?</h5>
 
-
-<div>
-	<h6>Requerimiento Nº<?php echo e($reqregnew); ?></h6>
-</div>
-
-
 <div>
 
 <form class="form-horizontal" method="POST">
@@ -95,21 +89,7 @@
     </div>
   </div>
 
-  <input type="hidden" name="req" id="req">
-  <script>
-    // Obtener referencias a los campos
-    var cod_tipo = document.getElementById('cod_tipo');
-    var req = document.getElementById('req');
-    // Escuchar el evento de cambio en tipo
-    cod_tipo.addEventListener('input', function() {
-    // Obtener el valor de tipo
-    var valorCod_tipo = cod_tipo.value;
-    // Agregar el prefijo As al valor de tipo y reqreg, para agregar valor a req
-    req.value = "As<?php echo e($sec); ?>-" + valorCod_tipo + '-<?php echo e($reqregnew); ?>';
-    });
-  </script>
-
-  <input type="hidden" name="req_reg" id="req_reg" value="<?php echo e($reqregnew); ?>">
+  <input type="hidden" name="sec" id="sec" value="<?php echo e($sec); ?>">
 
   <input type="hidden" name="edo" id="edo" value="<?php echo e($edo); ?>">
   

@@ -9,10 +9,11 @@
 
 <form class="form-horizontal" method="POST">
 	<?php echo csrf_field(); ?>
+	<?php echo method_field('PUT'); ?>
   <div class="form-group">
     <label class="control-label col-sm-2">Número de Solicitud:</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="usuario" value= "<?php echo e($solicitud); ?>" readonly>
+      <input type="text" class="form-control" id="usuario" value= "<?php echo e($req); ?>" readonly>
     </div>
   </div>
 
@@ -26,14 +27,7 @@
   <div class="form-group">
     <label class="control-label col-sm-2">Cédula:</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="ced_afi" id="ced_afi" value= "" readonly>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="control-label col-sm-2">Estado:</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="estado" id="estado" value="session('estado')" readonly>
+      <input type="text" class="form-control" name="ced_afi" id="ced_afi" value= "<?php echo e($solicitud->ced_afi); ?>" readonly>
     </div>
   </div>
 
@@ -57,7 +51,8 @@
     <div class="col-sm-offset-2 col-sm-10">
     <select name="cod_prio" id="cod_prio">
       <option>Prioridad de la Solicitud: </option>
-
+	  <option value="1">1.-Normal</option>
+      <option value="2">2.-Alta</option>
     </select>
     </div>
   </div>
@@ -75,20 +70,27 @@
   <div class="form-group">
     <label class="control-label col-sm-2">Cédula Digitalizada:</label>
     <div class="col-sm-10">
-      <input type="file" name="ced_dig" id="ced_dig" accept=".pdf" size="10000000">
+      <input type="file" name="ced_dig" id="ced_dig" value= "" accept=".pdf" size="10000000">
     </div>
     <div class="col-sm-10">
       <span id="valid" colour=red>Solo archivos PDF con un máximo de 10MB</span>
     </div>
   </div>
 
-  <input type="hidden" name="req_reg" id="req_reg" value="">
+  <input type="hidden" name="req_reg" id="req_reg" value="<?php echo e($solicitud->req_reg); ?>">
 
-  <input type="hidden" name="edo" id="edo" value="">
+  <input type="hidden" name="edo" id="edo" value="<?php echo e($solicitud->edo); ?>">
   
-  <input type="hidden" name="cod_usr" id="cod_usr" value="">
+  <input type="hidden" name="cod_usr" id="cod_usr" value="<?php echo e($solicitud->cod_usr); ?>">
   
-  <input type="hidden" name="fec_crea" id="fec_crea" value= "<?php echo e(now()); ?>">
+  <input type="hidden" name="cod_tipo" id="cod_tipo" value="<?php echo e($solicitud->cod_tipo); ?>">
+
+  <div class="form-group">
+    <label class="control-label col-sm-2">Fecha de la Solicitud:</label>
+    <div class="col-sm-10">
+      <input type="text" name="fec_crea" id="fec_crea" value= "<?php echo e($solicitud->fec_crea); ?>" readonly>
+    </div>
+  </div>
 
   <div class="form-group" align="center">
     <div class="col-sm-offset-2 col-sm-10">

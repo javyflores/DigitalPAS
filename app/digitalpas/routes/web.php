@@ -81,6 +81,12 @@ Route::get('/datos-nacionales', [ChartController::class, 'getDatosNacionales'])-
 
 /*vista de registro de usuarios*/
 Route::get('/registro', [RegistuserController::class, 'mostrarFormulario'])->name('registro.formulario');
+
+/*vista index de usuarios*/
+Route::get('/users', [RegistuserController::class, 'mostrarUsuarios'])->name('registro.users');
+Route::post('/users', [RegistuserController::class, 'consulta'])->name('registro.consultausers');
+
+
 //Route::post('/registro', [RegistuserController::class, 'guardar'])->name('registro.guardar');
 Route::post('/generar-codigo', [RegistuserController::class, 'generarCodigo']);
 Route::post('/registro/guardar', [RegistuserController::class, 'guardarUsuario'])->name('registro.guardar');

@@ -4,12 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Cargos;
+use App\Models\Role;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
 
+
+ * @property int $rol
+
+ */
 
 class Usuarios extends Authenticatable
 {
@@ -44,4 +51,16 @@ class Usuarios extends Authenticatable
         'password',
         'remember_token',
     ];
+
+
+
+    public function cargo()
+    {
+        return $this->belongsTo(Cargos::class, 'id');
+    }
+
+    public function rol()
+    {
+        return $this->belongsTo(Role::class, 'id');
+    }
 }

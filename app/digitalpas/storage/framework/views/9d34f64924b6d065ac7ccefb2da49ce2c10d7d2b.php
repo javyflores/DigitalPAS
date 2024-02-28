@@ -460,7 +460,7 @@
     <select class="form-control" name="cargos" id="cargos" required>
         <option value="" disabled selected>Seleccionar cargo</option>
         <?php $__currentLoopData = $cargos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $rows): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <option value="<?php echo e($rows->cod_cargo); ?>"><?php echo e($rows->cargo); ?></option>
+            <option value="<?php echo e($rows->id); ?>"><?php echo e($rows->cargo); ?></option>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </select>
 </div>
