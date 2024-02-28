@@ -108,7 +108,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Afiliado reportes</div>
+                <div class="sidebar-brand-text mx-3">Reporte Afiliaciones</div>
             </a>
 
             <!-- Divider -->
@@ -137,35 +137,6 @@
                 Gestión
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Solicitud de Asistencia</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Tramitar:</h6>
-                        <a class="collapse-item" href="afilnewreq">Beneficio</a>
-                        <a class="collapse-item" href="">Visita</a>
-                    </div>
-                </div>
-            </li>
-
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Complementos
-            </div>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Seguimiento de Solicitudes</span></a>
-            </li>
 
         <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -191,8 +162,7 @@
 
                     <!-- Para Logos -->
                     <div align="center">
-                        <img src="{{ asset('img/Logo DigitalPAS.png') }}" alt="Logo" style="height:50px;">           
-                        <img src="{{ asset('img/Logo SIRTRAME.png') }}" alt="Logo" style="height:50px;">
+                        <img src="{{ asset('img/DigitalPASirtrame.jpg') }}" alt="Logo" style="height:50px;">
                     </div>
 
                     <!-- Topbar Navbar -->
@@ -222,122 +192,6 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="{{ asset('img/camp.svg') }}">
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">1+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alertas
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="{{ asset('img/message.svg') }}">
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">1+</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Mensajes
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                            </div>
-                        </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -374,92 +228,88 @@
                     </ul>
 
                 </nav>
+
+
                 <!-- End of Topbar -->
-            <div class="row">
+                <div class="row">
 
 
-                <!-- Informacion Central -->
-                
-                <div class="container-fluid">
-                    <div class="documento">
-                    <div class="container mt-3">
-
-      <h2>Relación de afiliaciones</h2>
-
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                  <tr>
-                   
-                    <th>Estado</th>
-                
-                    <th>Cédula</th>
-             
-                    <th>1er Nombre</th> 
-                    <th>2do Nombre</th>
-                    <th>1er Apellido</th>
-                    <th>2do Apellido</th>
-                    <th>registro de requerimiento</th>
-                    <th>codigo de usuario</th>
-                    <th>fecha de creacion de solicitud</th>
+                    <!-- Informacion Central -->
                     
-                  </tr>
-                </thead>
-                <tbody>
-                    @if (!empty($afiliados))
-                        @foreach ($itemsPaginados as $index => $afiliado)
-                            <tr>
-                                
-                                <td>{{ $afiliado['entidad'] }}</td>
-                               
-                                <td>{{ $afiliado['cedula'] }}</td>
-                         
-                                <td>{{ $afiliado['p_nombre'] }}</td>
-                                <td>{{ $afiliado['s_nombre'] }}</td>
-                                <td>{{ $afiliado['p_apellido'] }}</td>
-                                <td>{{ $afiliado['s_apellido'] }}</td>
-                                <td>{{ $afiliado['req_reg'] }}</td>
-                                <td>{{ $afiliado['cod_usr'] }}</td>
-                                <td>{{ $afiliado['fec_crea'] }}</td>
-                               
-                            </tr>
-                        @endforeach
-                        @else
-                            <h5>No se encontró ningún Afiliado con ese número de Cédula</h5>             
-                    @endif
-                </tbody>
-            </table>
-        </div>
-        <p>Total de Solicitud de Afiliados: {{ $totalAfiliados }}</p>
-        <p>Pag actual: {{ $paginaActual }}</p>
-        <p>Pag:
+                    <div class="container-fluid">
 
-        <!-- Para mostrar la paginación -->
-        @php
-        for ($i = 1; $i <= $totalPaginas; $i++) {
-            echo '<a href="?pagina=' . $i . '">' . $i . '</a> ';
-        }
-        @endphp
+                        <div class="documento">
 
-        </p>
+                            <div class="cintillo">
+                              <!-- Logo del MPPE y otros órganos adscritos -->
+                              <img src="{{ asset('img/cintilloOFC.png') }}">
+                            </div>
 
-        <!--div class="container-fluid" align="right">
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-download fa-sm text-white-50"></i> Generar Reporte</a>
-        </div-->
+                            <div class="fecha">
+                              <!-- Fecha -->
+                              <p>Fecha: {{ \Carbon\Carbon::now()->locale('')->format('d \d\e F \d\e Y') }}</p>
+                            </div>
 
-    </div>
-    
+                            <div class="container mt-3">
+
+                                <h2>Relación de afiliaciones</h2>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                          <tr>
+                                            <th>Estado</th>
+                                            <th>Cédula</th>
+                                            <th>Nombre</th> 
+                                            <th>Apellido</th>
+                                            <th>Requerimiento</th>
+                                            <th>Código de usuario</th>
+                                            <th>Fecha de la solicitud</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (!empty($afiliados))
+                                                @foreach ($itemsPaginados as $index => $afiliado)
+                                                    <tr>
+                                                        <td>{{ $afiliado['entidad'] }}</td>
+                                                        <td>{{ $afiliado['cedula'] }}</td>
+                                                        <td>{{ $afiliado['p_nombre'] }}</td>
+                                                        <td>{{ $afiliado['p_apellido'] }}</td>
+                                                        <td>{{ $afiliado['req_reg'] }}</td>
+                                                        <td>{{ $afiliado['cod_usr'] }}</td>
+                                                        <td>{{ $afiliado['fec_crea'] }}</td>
+                                                    </tr>
+                                                @endforeach
+                                                @else
+                                                    <h5>No se encontró ningún Afiliado con ese número de Cédula</h5>
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <p>Total de Solicitud de Afiliados: {{ $totalAfiliados }}</p>
+                                <p>Pag actual: {{ $paginaActual }}</p>
+                                <p>Pag:
+                                    <!-- Para mostrar la paginación -->
+                                    @php
+                                    for ($i = 1; $i <= $totalPaginas; $i++) {
+                                        echo '<a href="?pagina=' . $i . '">' . $i . '</a> ';
+                                    }
+                                    @endphp
+                                </p>
+
+                            </div>
+                
+                        </div>
+
+                            <div class="vista">
+                                <button onclick="printDocument()">Vista previa e imprimir</button>
+                            </div>
+
+                    </div>
+
                 </div>
 
-  <div class="vista">
-  
-  <button onclick="printDocument()">Vista previa e imprimir</button>
-  
-                </div>
-            </div>
 
-            </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->

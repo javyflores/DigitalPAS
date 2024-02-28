@@ -34,7 +34,7 @@
 
     <div class="container mt-3">
 
-      <h5>Afiliaciones realizadas por la seccional:</h5>
+      <h5>Solicitudes de Trámites realizadas por la seccional:</h5>
 
         <div class="table-responsive">
             <table class="table table-bordered">

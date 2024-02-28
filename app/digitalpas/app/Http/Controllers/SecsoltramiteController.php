@@ -39,7 +39,7 @@ class SecsoltramiteController extends Controller
 	        // Calcular el número total de páginas
 	        $totalPaginas = ceil(count($requerimientos) / $itemsPorPagina);
 
-	        return view('seccional.secafiliaciones', [
+	        return view('seccional.secsoltramite', [
 	            'codigo' => $codigo,
 	            'usuario' => $usuario,
 	            'tipouser' => $tipouser,

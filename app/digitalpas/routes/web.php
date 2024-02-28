@@ -29,6 +29,18 @@ Route::post('regnacional', 'App\Http\Controllers\RegnacionalController@crear');
 /* Directiva Nacional */
 Route::get('nacionales', 'App\Http\Controllers\NacionalesController@index');
 
+Route::get('nacafiliaciones', 'App\Http\Controllers\NacafiliacionesController@index');
+Route::post('nacafiliaciones', 'App\Http\Controllers\NacafiliacionesController@consulta');
+Route::get('nacafilcons', 'App\Http\Controllers\NacafilconsController@index');
+
+Route::get('nacsoltramite', 'App\Http\Controllers\NacsoltramiteController@index');
+Route::post('nacsoltramite', 'App\Http\Controllers\NacsoltramiteController@consulta');
+Route::get('nacsoltracons', 'App\Http\Controllers\NacsoltraconsController@index');
+
+Route::get('nacvisitas', 'App\Http\Controllers\NacvisitasController@index');
+Route::post('nacvisitas', 'App\Http\Controllers\NacvisitasController@consulta');
+Route::get('nacvisitcons', 'App\Http\Controllers\NacvisitconsController@index');
+
 
 /* Directiva Seccional*/
 Route::get('dirsec', 'App\Http\Controllers\DirsecController@index');
