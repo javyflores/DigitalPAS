@@ -43,8 +43,7 @@
 	<form>
 	  <div class="container">
 	    <h4>Datos de su Requerimiento</h4>
-	    <p>Por Favor verifique los datos de su Solicitud de Beneficio Contractual.<br>
-	    Si los datos son correctos, confirme e imprima el comprobante.</p>
+	    <p>Por Favor imprima el comprobante.</p>
 	  </div>
 
 	  <div class="imp">
@@ -82,7 +81,7 @@
 	  </div>
 
 	  <div class="container">
-	    <input type="submit" value="Confirmar e Imprimir" onclick="printDocument()">
+	    <input type="submit" value="Imprimir" onclick="printDocument()">
 		  <script>
 		    function printDocument() {
 		      var printContents = document.getElementsByClassName("imp")[0].innerHTML;
@@ -94,16 +93,8 @@
 		  </script>
 	  </div>
 
-
-	  <div align="center">
-	    <button href="editSolAsist" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-window-close fa-sm text-white-50"></i> Eliminar Solicitud</button>
-
-	    <a href="editSolAsist" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-edit fa-sm text-white-50"></i> Editar Solicitud</a>
-
-	  </div>
-
-
 	</form>
+
 </div>
 
 @endsection

@@ -7,16 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Plataforma Digital de Asistencia Sindical">
     <meta name="author" content="@JAVYFLORES">
-
-    <title>DigitalPASirtrame-Panel</title>
+    <!-- Favicon -->
+    <link href="{{ asset('img/Logo SIRTRAME.png') }}" rel="icon" type="image/png">
+    <title>DigitalPASirtrame</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/normalize.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -64,7 +66,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tramitar:</h6>
                         <a class="collapse-item" href="afilnewreq">Beneficio</a>
-                        <a class="collapse-item" href="">Visita</a>
+                        <a class="collapse-item" href="afilnewvisit">Visita</a>
                     </div>
                 </div>
             </li>
@@ -78,10 +80,20 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="segsolicitudes">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Seguimiento de Solicitudes</span></a>
             </li>
+
+            <div class="sidebar-heading"></div>
+
+            <div >
+                <div class="modal-body">
+                        <a class="btn btn-primary" href="afiliado">Inicio</a>
+                </div>
+            </div>
+
+            <hr class="sidebar-divider">
 
         <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -107,36 +119,11 @@
 
                     <!-- Para Logos -->
                     <div align="center">
-                        <img src="{{ asset('img/Logo DigitalPAS.png') }}" alt="Logo" style="height:50px;">           
-                        <img src="{{ asset('img/Logo SIRTRAME.png') }}" alt="Logo" style="height:50px;">
+                        <img src="{{ asset('img/DigitalPASirtrame.jpg') }}" alt="Logo" style="height:50px;">           
                     </div>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -144,7 +131,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="{{ asset('img/camp.svg') }}">
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
+                                <span class="badge badge-danger badge-counter">1+</span>
                             </a>
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -195,7 +182,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="{{ asset('img/message.svg') }}">
                                 <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
+                                <span class="badge badge-danger badge-counter">1+</span>
                             </a>
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -309,7 +296,7 @@
                                     <p class="price__features">Temas Actuales</p>
                                     <p class="price__features">Aclara Dudas</p>
                                 </div>
-                                <a href="#" class="price__cta">Entra ahora</a>
+                                <a href="#" class="price__cta">Proximamente</a>
                             </div>
 
                             <div class="price__element price__element--best">
@@ -321,7 +308,7 @@
                                     <p class="price__features">Aclara Dudas</p>
                                 </div>
 
-                                <a href="#" class="price__cta">Entra ahora</a>
+                                <a href="#" class="price__cta">Proximamente</a>
                             </div>
                         </div>
                     </section>
@@ -366,7 +353,7 @@
                 <div class="modal-body">Seleccione "SALIR" si está listo para finalizar su sesión actual.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="{{ route('logout') }}">SALIR</a>
+                    <a class="btn btn-primary" href="">SALIR</a>
                 </div>
             </div>
         </div>

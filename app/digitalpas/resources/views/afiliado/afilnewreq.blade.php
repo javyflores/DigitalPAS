@@ -5,12 +5,6 @@
 
 <h5>Hola {{ $usuario }} ¿Qué Beneficio Contractual deseas gestionar?</h5>
 
-
-<div>
-	<h6>Requerimiento Nº{{ $reqregnew }}</h6>
-</div>
-
-
 <div>
 
 <form class="form-horizontal" method="POST">
@@ -95,21 +89,7 @@
     </div>
   </div>
 
-  <input type="hidden" name="req" id="req">
-  <script>
-    // Obtener referencias a los campos
-    var cod_tipo = document.getElementById('cod_tipo');
-    var req = document.getElementById('req');
-    // Escuchar el evento de cambio en tipo
-    cod_tipo.addEventListener('input', function() {
-    // Obtener el valor de tipo
-    var valorCod_tipo = cod_tipo.value;
-    // Agregar el prefijo As al valor de tipo y reqreg, para agregar valor a req
-    req.value = "As{{ $sec }}-" + valorCod_tipo + '-{{ $reqregnew }}';
-    });
-  </script>
-
-  <input type="hidden" name="req_reg" id="req_reg" value="{{ $reqregnew }}">
+  <input type="hidden" name="sec" id="sec" value="{{ $sec }}">
 
   <input type="hidden" name="edo" id="edo" value="{{ $edo }}">
   

@@ -10,19 +10,27 @@ use App\Models\Sol_asistencia;
 
 class ConfSolAsistController extends Controller
 {
-    public function prueba(){
+    public function index(){
 
     	$reqr = session::get('reqr');
     	$estado = session::get('estado');
 
-
     	$sol_asistencia = session('sol_asistencia');
 
-    	//$sol_asistencia->req
     	return view ('afiliado.confSolAsist', [
     	'sol_asistencia' => $sol_asistencia,
     	'reqr' => $reqr,
     	'estado' => $estado
     	]);
     }
+
+    public function edit(Request $request){
+
+    	$req = $request->input('reqr');
+    	$estado = $request->input('estado');
+    	
+    	return redirect('/editSolAsist')->with('req', $req);
+
+    }
+
 }

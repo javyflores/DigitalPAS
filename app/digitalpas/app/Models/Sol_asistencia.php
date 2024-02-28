@@ -12,7 +12,7 @@ class Sol_asistencia extends Model
     protected $primaryKey = 'req';
     public $timestamps = false;
 
-
+/*
     public function consultarSolicitudes()
 	{
 	    $solicitudes = Sol_asistencia::paginate(10); // Obtén 10 solicitudes por página
@@ -61,7 +61,7 @@ class Sol_asistencia extends Model
 	    return false;
 	}
 
-
+*/
 
 
 
